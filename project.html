@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project — Alloy Contracting Services</title>
+<meta name="description" content="Project detail — Alloy Contracting Services" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:   #080808;
+  --black-2: #0D0D0D;
+  --surf-1:  #111111;
+  --surf-2:  #181818;
+  --red:     #E8231A;
+  --red-pale:#FF5A52;
+  --red-deep:#B51C15;
+  --line:    rgba(255,255,255,0.07);
+  --line-m:  rgba(255,255,255,0.13);
+  --txt-1:   rgba(255,255,255,0.90);
+  --txt-2:   rgba(255,255,255,0.52);
+  --txt-3:   rgba(255,255,255,0.28);
+  --white:   #FFFFFF;
+  --serif: 'Cormorant Garamond','Times New Roman',serif;
+  --sans:  'Inter',system-ui,sans-serif;
+  --red-grad: linear-gradient(135deg,#C8180F 0%,#E8231A 50%,#C8180F 100%);
+  --ease-out: cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--txt-1); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+
+.container { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 13px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(8,8,8,0.96);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-logo-img { width: 32px; height: 32px; object-fit: contain; }
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+.nav-wordmark .a { font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: 0.18em; color: var(--white); }
+.nav-wordmark .c { font-size: 8px; letter-spacing: 0.34em; color: var(--red); margin-top: 4px; text-transform: uppercase; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-back { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--txt-2); display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+.nav-back:hover { color: var(--red); }
+.nav-back svg { transition: transform 0.2s; }
+.nav-back:hover svg { transform: translateX(-3px); }
+.nav-back .back-label { display: none; }
+.nav-cta { display: none; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; padding: 10px 18px; background: var(--red-grad); color: var(--white); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgba(232,35,26,0.65); }
+.nav-burger { display: flex; flex-direction: column; gap: 5px; width: 32px; padding: 4px 0; cursor: pointer; }
+.nav-burger span { display: block; width: 100%; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(8,8,8,0.99); flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; transition: opacity 0.35s; }
+.mobile-menu.open { display: flex; opacity: 1; }
+.mobile-menu a { font-family: var(--serif); font-size: 32px; letter-spacing: 0.06em; color: var(--txt-1); transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--red); }
+
+/* PROJECT HERO */
+.proj-hero { position: relative; height: 75vh; min-height: 420px; overflow: hidden; display: flex; align-items: flex-end; }
+.proj-hero-img { position: absolute; inset: 0; background: #111 center/cover no-repeat; transition: transform 8s ease; }
+.proj-hero-img.loaded { transform: scale(1.04); }
+.proj-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,8,0.35) 0%, rgba(8,8,8,0.2) 35%, rgba(8,8,8,0.90) 100%); }
+.proj-hero-content { position: relative; z-index: 2; padding: 0 0 48px; width: 100%; }
+.proj-breadcrumb { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.proj-breadcrumb a { color: rgba(255,255,255,0.45); transition: color 0.2s; }
+.proj-breadcrumb a:hover { color: var(--red-pale); }
+.proj-breadcrumb span { color: rgba(255,255,255,0.22); }
+.proj-hero-sector { display: inline-block; background: var(--red); color: var(--white); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 600; padding: 5px 12px; margin-bottom: 14px; }
+.proj-hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(32px,8vw,72px); line-height: 1.03; letter-spacing: -0.015em; color: var(--white); margin-bottom: 10px; }
+.proj-hero-sub { font-size: 15px; color: rgba(255,255,255,0.58); }
+
+/* STATS BAR */
+.proj-stats { background: var(--black-2); border-bottom: 1px solid var(--line); }
+.proj-stats-row { display: grid; grid-template-columns: repeat(2,1fr); max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+.proj-stat { padding: 18px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 5px; }
+.proj-stat:nth-child(2n) { border-right: none; }
+.proj-stat:nth-child(n+5) { border-bottom: none; }
+.proj-stat-lbl { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--txt-3); }
+.proj-stat-val { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--white); line-height: 1; }
+.proj-stat-val.red { background: var(--red-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* SECTIONS */
+.section { padding: 64px 0; background: var(--black); }
+.section-alt { padding: 64px 0; background: var(--black-2); }
+.section-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--red); font-weight: 500; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.section-label::before { content: ""; display: inline-block; width: 28px; height: 1px; background: var(--red); flex-shrink: 0; }
+.section-label.dim { color: var(--txt-3); }
+.section-label.dim::before { background: var(--txt-3); }
+.section-h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(28px,6vw,50px); line-height: 1.06; letter-spacing: -0.012em; color: var(--txt-1); margin-bottom: 36px; }
+.section-h2.light { color: var(--white); }
+
+/* SCOPE */
+.scope-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: start; }
+.scope-intro { font-size: 16px; line-height: 1.75; color: var(--txt-2); margin-bottom: 28px; font-family: var(--serif); }
+.scope-list { display: flex; flex-direction: column; gap: 12px; }
+.scope-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--surf-1); border-left: 3px solid var(--red); transition: background 0.2s; }
+.scope-item:hover { background: var(--surf-2); }
+.scope-num { font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--red); line-height: 1; flex-shrink: 0; width: 34px; }
+.scope-text { font-size: 14px; line-height: 1.7; color: var(--txt-2); padding-top: 5px; }
+.scope-image { position: relative; aspect-ratio: 4/3; background: #111 center/cover no-repeat; overflow: hidden; }
+.scope-image::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(232,35,26,0.28); pointer-events: none; z-index: 1; }
+
+/* EVALUATION */
+.eval-section { background: var(--black-2); padding: 64px 0; }
+.eval-grid { display: grid; grid-template-columns: 1fr; gap: 2px; background: rgba(255,255,255,0.05); }
+.eval-card { background: var(--black-2); padding: 28px 24px; position: relative; overflow: hidden; }
+.eval-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--red-grad); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease-out); }
+.eval-card:hover::before { transform: scaleX(1); }
+.eval-icon { width: 46px; height: 46px; background: rgba(232,35,26,0.1); border: 1px solid rgba(232,35,26,0.22); display: flex; align-items: center; justify-content: center; color: var(--red); margin-bottom: 18px; }
+.eval-title { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--txt-3); margin-bottom: 8px; }
+.eval-value { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--txt-1); line-height: 1.4; }
+
+/* CLIENT REVIEW */
+.review-section { background: var(--surf-1); padding: 64px 0; }
+.review-inner { display: grid; grid-template-columns: 1fr; gap: 40px; }
+.stars { display: flex; gap: 6px; margin-bottom: 20px; }
+.star { color: var(--red); font-size: 18px; }
+.review-quote { font-family: var(--serif); font-size: clamp(20px,4vw,30px); font-weight: 400; font-style: italic; line-height: 1.55; letter-spacing: -0.005em; color: var(--txt-1); margin-bottom: 28px; }
+.review-quote::before { content: "\201C"; font-size: 72px; line-height: 0; vertical-align: -24px; color: var(--red); font-style: normal; margin-right: 4px; font-family: var(--serif); }
+.reviewer { display: flex; align-items: center; gap: 14px; }
+.reviewer-ava { width: 48px; height: 48px; background: var(--red-grad); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--white); flex-shrink: 0; }
+.reviewer-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--txt-1); }
+.reviewer-role { font-size: 11px; letter-spacing: 0.12em; color: var(--txt-3); margin-top: 3px; }
+.satisfaction-panel { background: var(--surf-2); padding: 28px 24px; border-left: 3px solid var(--red); }
+.satisfaction-title { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 22px; }
+.satisfaction-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.satisfaction-row:last-child { border-bottom: none; }
+.sat-label { font-size: 13px; color: var(--txt-2); }
+.sat-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.08); margin: 0 14px; position: relative; overflow: hidden; }
+.sat-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0; background: var(--red-grad); transition: width 1.2s var(--ease-out); }
+.sat-pct { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--red); min-width: 42px; text-align: right; }
+
+/* MORE PROJECTS */
+.more-section { padding: 64px 0; background: var(--black-2); }
+.more-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }
+.more-card { position: relative; aspect-ratio: 4/3; overflow: hidden; border: 1px solid var(--line); display: block; transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s; }
+.more-card:hover { transform: translateY(-5px); border-color: var(--red); box-shadow: 0 24px 48px -24px rgba(232,35,26,0.22); }
+.more-img { position: absolute; inset: 0; background: #111 center/cover no-repeat; transition: transform 0.7s var(--ease-out); }
+.more-card:hover .more-img { transform: scale(1.05); }
+.more-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 40%,rgba(8,8,8,0.90) 100%); }
+.more-meta { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 16px 18px; z-index: 2; border-left: 3px solid var(--red); }
+.more-meta .yr { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red-pale); margin-bottom: 4px; }
+.more-meta h4 { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--white); line-height: 1.2; }
+.more-meta .cli { font-size: 11px; color: rgba(255,255,255,0.48); margin-top: 3px; }
+.more-view { position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; justify-content: center; background: rgba(232,35,26,0.82); opacity: 0; transition: opacity 0.3s; }
+.more-card:hover .more-view { opacity: 1; }
+.more-view span { font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600; color: var(--white); }
+
+/* CTA STRIP */
+.cta-strip { background: var(--red); padding: 64px 0; text-align: center; position: relative; overflow: hidden; }
+.cta-strip::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(120deg,rgba(255,255,255,0.04) 0 1.5px,transparent 1.5px 28px); pointer-events: none; }
+.cta-strip h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(26px,6vw,48px); color: var(--white); margin-bottom: 10px; position: relative; }
+.cta-strip p { font-size: 14px; color: rgba(255,255,255,0.75); margin-bottom: 28px; position: relative; }
+.cta-strip-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; flex-direction: column; align-items: center; }
+.cta-strip-btns .btn { width: 100%; max-width: 280px; justify-content: center; }
+
+/* FOOTER */
+.footer { background: var(--black); padding: 48px 0 24px; border-top: 1px solid var(--line); }
+.footer-simple { display: flex; flex-direction: column; gap: 20px; }
+.footer-brand-sm { display: flex; align-items: center; gap: 12px; }
+.footer-logo-sm { width: 32px; height: 32px; object-fit: contain; }
+.footer-wm-a { font-family: var(--serif); font-weight: 600; font-size: 17px; letter-spacing: 0.18em; color: var(--white); }
+.footer-wm-c { font-size: 8px; letter-spacing: 0.34em; color: var(--red); margin-top: 3px; text-transform: uppercase; display: block; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a { font-size: 12px; color: var(--txt-3); letter-spacing: 0.06em; transition: color 0.2s; }
+.footer-links a:hover { color: var(--txt-1); }
+.footer-copy { font-size: 11px; color: var(--txt-3); letter-spacing: 0.08em; }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; padding: 14px 26px; transition: transform 0.25s var(--ease-out), box-shadow 0.25s, background 0.25s, color 0.25s; cursor: pointer; border: none; }
+.btn-white { background: var(--white); color: var(--red); }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -16px rgba(0,0,0,0.4); }
+.btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.7); }
+.btn-outline { background: rgba(255,255,255,0.05); color: var(--txt-1); border: 1px solid rgba(255,255,255,0.15); }
+.btn-outline:hover { border-color: var(--red); background: rgba(232,35,26,0.07); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ═══ RESPONSIVE — MOBILE FIRST ═══ */
+
+@media (min-width: 480px) {
+  .cta-strip-btns { flex-direction: row; }
+  .cta-strip-btns .btn { width: auto; }
+}
+
+@media (min-width: 640px) {
+  .container { padding: 0 20px; }
+  .proj-stats-row { padding: 0 20px; grid-template-columns: repeat(3,1fr); }
+  .proj-stat:nth-child(2n) { border-right: 1px solid var(--line); }
+  .proj-stat:nth-child(3n) { border-right: none; }
+  .proj-stat:nth-child(n+4) { border-bottom: none; border-top: 1px solid var(--line); }
+  .proj-stat:nth-child(n+5) { border-bottom: none; }
+  .more-grid { grid-template-columns: repeat(2,1fr); }
+  .eval-grid { grid-template-columns: repeat(2,1fr); }
+  .section { padding: 80px 0; }
+  .section-alt { padding: 80px 0; }
+  .eval-section { padding: 80px 0; }
+  .review-section { padding: 80px 0; }
+  .more-section { padding: 80px 0; }
+  .footer-simple { flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+}
+
+@media (min-width: 780px) {
+  .container { padding: 0 28px; }
+  .nav { padding: 14px 32px; }
+  .nav-back .back-label { display: inline; }
+  .nav-burger { display: none; }
+  .nav-cta { display: inline-flex; align-items: center; }
+  .proj-hero { height: 85vh; }
+  .proj-hero h1 { font-size: clamp(40px,6vw,72px); }
+  .proj-hero-content { padding: 0 0 60px; }
+  .proj-stats-row { padding: 0 28px; grid-template-columns: repeat(5,1fr); }
+  .proj-stat { border-bottom: none; }
+  .proj-stat:nth-child(3n) { border-right: 1px solid var(--line); }
+  .proj-stat:nth-child(5n) { border-right: none; }
+  .proj-stat:nth-child(n+4) { border-top: none; }
+  .scope-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
+  .scope-image { aspect-ratio: 4/5; }
+  .review-inner { grid-template-columns: 1fr 1.4fr; gap: 60px; }
+  .more-grid { grid-template-columns: repeat(3,1fr); }
+  .section { padding: 96px 0; }
+  .section-alt { padding: 96px 0; }
+  .eval-section { padding: 96px 0; }
+  .review-section { padding: 96px 0; }
+  .more-section { padding: 96px 0; }
+}
+
+@media (min-width: 900px) {
+  .container { padding: 0 32px; }
+  .nav { padding: 14px 40px; }
+  .proj-stats-row { padding: 0 32px; }
+  .eval-card { padding: 36px 40px; }
+  .satisfaction-panel { padding: 36px 40px; }
+}
+
+@media (min-width: 1080px) {
+  .section { padding: 112px 0; }
+  .section-alt { padding: 112px 0; }
+  .eval-section { padding: 112px 0; }
+  .review-section { padding: 112px 0; }
+  .more-section { padding: 112px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="WhatsApp Image 2026-05-18 at 9.03.54 AM-Photoroom.png" class="nav-logo-img" alt="Alloy logo">
+    <div class="nav-wordmark">
+      <span class="a">ALLOY</span>
+      <span class="c">Contracting Services</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html#projects" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span class="back-label">All Projects</span>
+    </a>
+    <a href="index.html#contact" class="nav-cta btn">Get a Quote</a>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="index.html#projects">All Projects</a>
+  <a href="index.html#services">Services</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<!-- PROJECT HERO -->
+<section class="proj-hero" id="proj-hero">
+  <div class="proj-hero-img" id="proj-hero-img"></div>
+  <div class="proj-hero-overlay"></div>
+  <div class="container proj-hero-content">
+    <nav class="proj-breadcrumb">
+      <a href="index.html">Alloy</a>
+      <span>›</span>
+      <a href="index.html#projects">Projects</a>
+      <span>›</span>
+      <span id="bc-title">Project</span>
+    </nav>
+    <div class="proj-hero-sector" id="hero-sector">Institutional</div>
+    <h1 id="hero-title">Project Title</h1>
+    <div class="proj-hero-sub" id="hero-sub">Subtitle</div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="proj-stats">
+  <div class="proj-stats-row">
+    <div class="proj-stat"><span class="proj-stat-lbl">Client</span><span class="proj-stat-val" id="stat-client">—</span></div>
+    <div class="proj-stat"><span class="proj-stat-lbl">Contract Value</span><span class="proj-stat-val red" id="stat-value">—</span></div>
+    <div class="proj-stat"><span class="proj-stat-lbl">Duration</span><span class="proj-stat-val" id="stat-duration">—</span></div>
+    <div class="proj-stat"><span class="proj-stat-lbl">Year Delivered</span><span class="proj-stat-val" id="stat-year">—</span></div>
+    <div class="proj-stat"><span class="proj-stat-lbl">Location</span><span class="proj-stat-val" id="stat-location">—</span></div>
+  </div>
+</div>
+
+<!-- SCOPE OF WORKS -->
+<section class="section" id="scope-section">
+  <div class="container">
+    <div class="scope-grid">
+      <div>
+        <span class="section-label">Scope of Works</span>
+        <h2 class="section-h2">What we delivered.</h2>
+        <p class="scope-intro" id="scope-intro">Loading...</p>
+        <div class="scope-list" id="scope-list"></div>
+      </div>
+      <div class="scope-image reveal" id="scope-image"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT EVALUATION -->
+<section class="eval-section">
+  <div class="container">
+    <span class="section-label dim">Project Evaluation</span>
+    <h2 class="section-h2 light">How we performed.</h2>
+    <div class="eval-grid" id="eval-grid"></div>
+  </div>
+</section>
+
+<!-- CLIENT REVIEW -->
+<section class="review-section">
+  <div class="container">
+    <div class="review-inner">
+      <div class="review-left reveal">
+        <span class="section-label">Client Satisfaction</span>
+        <h2 class="section-h2">What the client said.</h2>
+        <div class="stars" id="stars"></div>
+        <div class="review-quote serif" id="review-quote">Loading...</div>
+        <div class="reviewer">
+          <div class="reviewer-ava" id="reviewer-ava">—</div>
+          <div>
+            <div class="reviewer-name" id="reviewer-name">—</div>
+            <div class="reviewer-role" id="reviewer-role">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="satisfaction-panel reveal reveal-delay-2">
+        <div class="satisfaction-title">Delivery Scorecard</div>
+        <div class="satisfaction-row">
+          <span class="sat-label">Schedule</span>
+          <div class="sat-bar"><div class="sat-fill" data-width="100"></div></div>
+          <span class="sat-pct">100%</span>
+        </div>
+        <div class="satisfaction-row">
+          <span class="sat-label">Specification</span>
+          <div class="sat-bar"><div class="sat-fill" data-width="100"></div></div>
+          <span class="sat-pct">100%</span>
+        </div>
+        <div class="satisfaction-row">
+          <span class="sat-label">Budget Control</span>
+          <div class="sat-bar"><div class="sat-fill" data-width="98"></div></div>
+          <span class="sat-pct">98%</span>
+        </div>
+        <div class="satisfaction-row">
+          <span class="sat-label">Site Safety</span>
+          <div class="sat-bar"><div class="sat-fill" data-width="100"></div></div>
+          <span class="sat-pct">100%</span>
+        </div>
+        <div class="satisfaction-row">
+          <span class="sat-label">Client Satisfaction</span>
+          <div class="sat-bar"><div class="sat-fill" data-width="100"></div></div>
+          <span class="sat-pct">100%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MORE PROJECTS -->
+<section class="more-section">
+  <div class="container">
+    <span class="section-label">More Projects</span>
+    <h2 class="section-h2" style="margin-top:12px;margin-bottom:0;">More of our work.</h2>
+    <div class="more-grid" id="more-grid"></div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <div class="container">
+    <h2>Ready to build something that lasts?</h2>
+    <p>A senior Alloy partner responds within one business day.</p>
+    <div class="cta-strip-btns">
+      <a class="btn btn-white" href="tel:+2341460880">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A18 18 0 013 6a2 2 0 012-2z"/></svg>
+        Call Us Now
+      </a>
+      <a class="btn btn-ghost" href="mailto:partnerships@alloycs.ng">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18v14H3zM3 5l9 8 9-8"/></svg>
+        Email Our Team
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-simple">
+      <div class="footer-brand-sm">
+        <img src="WhatsApp Image 2026-05-18 at 9.03.54 AM-Photoroom.png" class="footer-logo-sm" alt="Alloy logo">
+        <div>
+          <div class="footer-wm-a">ALLOY</div>
+          <span class="footer-wm-c">Contracting Services</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 Alloy Contracting Services Ltd.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+const PROJECTS = {
+  'british-council': {
+    title:'British Council Lagos',subtitle:'Multi-Phase Institutional Fit-Out',
+    client:'British Council',sector:'Institutional',year:'2024',
+    location:'Victoria Island, Lagos',value:'₦850M',duration:'18 months',
+    image:'construction_images/services-interior-01.jpeg',
+    scopeIntro:'A comprehensive interior transformation of the British Council cultural centre in Lagos — delivering a world-class facility that meets international institutional standards while remaining rooted in its Nigerian context.',
+    scope:[
+      'Complete interior strip-out and rebuild of 4,200 sqm cultural centre across 3 floors',
+      'Structural reinforcement and full MEP systems upgrade including dedicated power and cooling',
+      'Installation of specialist audio-visual and acoustic systems for performance venues',
+      'Custom joinery and exhibition display systems to British Council international specification',
+      'External landscaping, security perimeter, and disabled-access upgrades throughout'
+    ],
+    evaluation:[
+      {icon:'clock',title:'Programme',value:'Delivered on schedule — zero milestone delays across 18 months'},
+      {icon:'check',title:'Specification',value:'100% compliance verified by independent third-party inspector at practical completion'},
+      {icon:'budget',title:'Budget',value:'Final account settled within 1.2% of original contract sum — no disputes'},
+      {icon:'shield',title:'Safety',value:'Zero reportable incidents across an 18-month programme with 47 direct workers on site'}
+    ],
+    review:{quote:'Alloy delivered our Lagos facility to an exceptional standard. Their reporting discipline made board oversight completely straightforward, and the finish quality exceeded our London office expectations.',author:'Adaeze A.',role:'Facilities Director, British Council Nigeria',rating:5,initials:'AA'}
+  },
+  'rccg': {
+    title:'Regional Worship Centre',subtitle:'12,000-Seat Auditorium Construction',
+    client:'RCCG',sector:'Religious',year:'2024',
+    location:'Lagos State',value:'₦2.1B',duration:'24 months',
+    image:'construction_images/services-structural-03.jpeg',
+    scopeIntro:'Ground-up construction of a landmark 12,000-capacity worship centre — one of the largest single religious auditorium projects delivered in Lagos in recent years, completed ahead of phase one target.',
+    scope:[
+      'Ground-up construction of 12,000-capacity main auditorium with engineered long-span roof',
+      'Supporting infrastructure: 3,000-space car park, access roads, and full utility services',
+      'Full MEP installation including specialist audio, lighting control, and HVAC systems',
+      'Ancillary buildings: pastoral office block, children\'s facility, and catering wing',
+      'Site-wide landscaping and external works across an 8-hectare development footprint'
+    ],
+    evaluation:[
+      {icon:'clock',title:'Programme',value:'Phase 1 (main auditorium) delivered 3 weeks ahead of contracted target date'},
+      {icon:'check',title:'Specification',value:'Roof structure independently certified by structural engineering firm — no remedial works'},
+      {icon:'budget',title:'Budget',value:'Value-engineered procurement saved 4.2% against original bill of quantities'},
+      {icon:'shield',title:'Safety',value:'Zero lost-time injuries recorded across the entire 24-month construction programme'}
+    ],
+    review:{quote:'From foundation to handover, the Alloy team treated our institution\'s standards as their own. The quality of the build is evident years later — our congregation deserved nothing less.',author:'Oluseyi O.',role:'Diocese Project Lead, RCCG',rating:5,initials:'OO'}
+  },
+  'tcn-substation': {
+    title:'Substation Civil Works',subtitle:'330kV Transmission Infrastructure, TCN',
+    client:'TCN',sector:'Civil',year:'2023',
+    location:'Abuja, FCT',value:'₦1.4B',duration:'14 months',
+    image:'construction_images/services-structural-01.jpeg',
+    scopeIntro:'Critical civil and structural works for a 330kV national grid substation — executed to zero-defect standards in a live-adjacent environment where schedule delays would have directly impacted national power transmission.',
+    scope:[
+      'Civil and structural works for 330kV grid substation including control building and transformer bays',
+      'Raft foundation design and construction for high-voltage electrical equipment plinths',
+      'Reinforced concrete security perimeter, gatehouse, access roads, and drainage network',
+      'Cable trench networks, earthing systems, and oil-containment bund construction',
+      'Fire suppression civil works and plant room construction to TCN engineering specification'
+    ],
+    evaluation:[
+      {icon:'clock',title:'Programme',value:'All civil handover milestones met to TCN programme — zero equipment commissioning delays'},
+      {icon:'check',title:'Specification',value:'All structural works certified by TCN-appointed independent engineer at first submission'},
+      {icon:'budget',title:'Budget',value:'Contract closed 0.8% under agreed sum — savings returned to client without dispute'},
+      {icon:'shield',title:'Safety',value:'Zero reportable incidents — critical safety site with zero-tolerance HSE maintained throughout'}
+    ],
+    review:{quote:'Working on live-adjacent grid infrastructure demands precision and discipline. Alloy\'s team understood the stakes and delivered accordingly — no excuses, no shortcuts, no surprises.',author:'Musa K.',role:'Corporate Estates Manager, TCN',rating:5,initials:'MK'}
+  },
+  'nnpc-refit': {
+    title:'NNPC Floor Refit',subtitle:'Executive Floor Interior Transformation',
+    client:'NNPC',sector:'Commercial',year:'2023',
+    location:'NNPC Towers, Abuja',value:'₦320M',duration:'8 months',
+    image:'construction_images/services-interior-05.jpeg',
+    scopeIntro:'A precision interior refurbishment of three executive floors within an occupied high-rise tower — delivering a premium corporate environment without a single day of disruption to the floors above and below.',
+    scope:[
+      'Full strip-out and refurbishment of 3 executive floors in an occupied high-rise commercial tower',
+      'Raised access flooring, suspended ceiling systems, and coordinated MEP services',
+      'Boardroom and C-suite custom joinery, glass partitioning, and audio-visual integration',
+      'Specialist security-integrated access control and visitor management systems throughout',
+      'Building management system (BMS) integration for newly refurbished zones'
+    ],
+    evaluation:[
+      {icon:'clock',title:'Programme',value:'Live-building programme managed with zero disruption to occupants on adjacent floors'},
+      {icon:'check',title:'Specification',value:'All finishes accepted at first inspection — zero snagging items raised at practical completion'},
+      {icon:'budget',title:'Budget',value:'Final account agreed within 60 days of handover — no disputes or prolongation claims'},
+      {icon:'shield',title:'Safety',value:'Zero incidents — NNPC HSE audit compliance maintained throughout the live-building programme'}
+    ],
+    review:{quote:'We\'ve engaged Alloy across three fit-outs. Each time — on time, on budget, and with a finish our principals were proud to show clients. They are our contractor of first choice.',author:'Adaeze A.',role:'Head of Estates, NNPC',rating:5,initials:'AA'}
+  },
+  'unilag-faculty': {
+    title:'Faculty Extension',subtitle:'4-Storey Academic Block, University of Lagos',
+    client:'UNILAG',sector:'Institutional',year:'2023',
+    location:'Yaba, Lagos',value:'₦780M',duration:'20 months',
+    image:'construction_images/services-facade-03.jpeg',
+    scopeIntro:'A new 4-storey faculty extension built on an active university campus — engineered for academic excellence and commissioned in time for the start of the academic year without a day\'s slippage.',
+    scope:[
+      'Ground-up 4-storey faculty extension, 6,800 sqm gross floor area',
+      'Lecture theatres (350 and 120-seat capacity), seminar rooms, faculty offices, and postgraduate labs',
+      'Full MEP installation including specialist laboratory services, IT infrastructure, and lift',
+      'Disabled-access upgrades and compliant lift installation throughout all four floors',
+      'Covered walkways and external works linking new block to existing faculty buildings'
+    ],
+    evaluation:[
+      {icon:'clock',title:'Programme',value:'Building commissioned for the start of the contracted academic year — zero delay to semester'},
+      {icon:'check',title:'Specification',value:'NUC inspection passed at first submission with no conditions or required remedial works'},
+      {icon:'budget',title:'Budget',value:'Final account settled within original UNILAG Council-approved budget envelope'},
+      {icon:'shield',title:'Safety',value:'Zero reportable incidents across a 20-month programme on an active university campus'}
+    ],
+    review:{quote:'Alloy navigated the complexity of building on an active university campus with professionalism at every stage. The building stands as a worthy addition to our Faculty of Engineering.',author:'Prof. Emeka T.',role:'Dean of Engineering, UNILAG',rating:5,initials:'ET'}
+  },
+  'fmoh-diagnostic': {
+    title:'Diagnostic Centre',subtitle:'Specialist Medical Facility, FMOH Abuja',
+    client:'FMOH',sector:'Institutional',year:'2022',
+    location:'Abuja, FCT',value:'₦1.1B',duration:'22 months',
+    image:'construction_images/services-interior-09.jpeg',
+    scopeIntro:'A new-build specialist diagnostic and imaging centre built to international healthcare standards — delivered two weeks ahead of programme and commissioned without a single condition from federal inspectors.',
+    scope:[
+      'New-build specialist diagnostic and imaging centre, 4,100 sqm gross floor area',
+      'Medical-grade MEP: dedicated power circuits, medical gas systems, and infection-control HVAC',
+      'Radiation shielding construction for CT scanner, MRI, and X-ray suites to IAEA standards',
+      'Specialist flooring, hygienic wall cladding, and ceiling systems throughout clinical areas',
+      'External works: patient drop-off zone, ambulance bay, car park, and generator enclosure'
+    ],
+    evaluation:[
+      {icon:'clock',title:'Programme',value:'Practical completion achieved 2 weeks ahead of contracted date — handed over early'},
+      {icon:'check',title:'Specification',value:'Passed NAFDAC and Federal Ministry of Health commissioning inspections without conditions'},
+      {icon:'budget',title:'Budget',value:'Final account within 1.6% of contract sum — approved variations only, zero disputes'},
+      {icon:'shield',title:'Safety',value:'Zero incidents across 22 months — medical-grade site safety protocols maintained throughout'}
+    ],
+    review:{quote:'A diagnostic centre built to international standard, delivered on Nigerian soil. Alloy understood the precision this facility required and did not compromise at any stage of the build.',author:'Dr. Fatima B.',role:'Director, Infrastructure Division, FMOH',rating:5,initials:'FB'}
+  },
+  'nia-heritage': {
+    title:'Heritage Restoration',subtitle:'Historic Facade Conservation, NIA Lagos',
+    client:'NIA Lagos',sector:'Civil',year:'2022',
+    location:'Lagos Island',value:'₦240M',duration:'10 months',
+    image:'construction_images/services-facade-04.jpeg',
+    scopeIntro:'A sensitive conservation project restoring a 1920s colonial-era facade on Lagos Island — combining craft-level masonry work with modern structural remediation to preserve an irreplaceable piece of the city\'s architectural heritage.',
+    scope:[
+      'Structural assessment and full remedial works programme to 1920s colonial-era facade',
+      'Stone and masonry conservation including repointing and replacement of failed elements',
+      'Controlled demolition of unsafe rear additions with new-build construction to match original',
+      'Timber roof structure repair and re-covering using period-appropriate materials and methods',
+      'Internal upgrade works: MEP systems, floor finishes, and full disabled-access improvements'
+    ],
+    evaluation:[
+      {icon:'clock',title:'Programme',value:'Delivered within programme — complex conservation methodology managed to schedule'},
+      {icon:'check',title:'Specification',value:'NCMM conservation standards fully met at inspection'},
+      {icon:'budget',title:'Budget',value:'Final account agreed at tender sum — no variations beyond agreed provisional sums'},
+      {icon:'shield',title:'Safety',value:'Zero incidents — heritage site with elevated structural risk safely managed throughout'}
+    ],
+    review:{quote:'Heritage conservation demands craft as much as construction discipline. Alloy brought both — the restored facade is something the architectural community in Lagos is genuinely proud of.',author:'Arch. Kunle A.',role:'Chairman, NIA Lagos Chapter',rating:5,initials:'KA'}
+  },
+  'firstbank-hq': {
+    title:'Corporate HQ Build-Out',subtitle:'Flagship Lobby & Executive Floor Transformation',
+    client:'FirstBank',sector:'Commercial',year:'2024',
+    location:'Marina, Lagos',value:'₦580M',duration:'12 months',
+    image:'construction_images/services-facade-05.jpeg',
+    scopeIntro:'A complete reimagining of FirstBank\'s flagship lobby and executive floors — creating a space that communicates institutional permanence and confidence while remaining fully operational throughout the transformation.',
+    scope:[
+      'Complete redesign and rebuild of ground-floor banking hall and public lobby, 2,200 sqm',
+      'Executive floor refurbishment: boardroom suite, C-suite offices, and client entertainment spaces',
+      'Custom fabricated reception counter, feature walls, and bespoke architectural lighting',
+      'Premium material specification: marble flooring, bronze metalwork, and acoustic wall panels',
+      'Security systems integration, digital signage infrastructure, and AV throughout'
+    ],
+    evaluation:[
+      {icon:'clock',title:'Programme',value:'Phased handover — banking hall reopened on agreed date with zero service interruption to customers'},
+      {icon:'check',title:'Specification',value:'FirstBank Estates sign-off achieved at first review — cited as benchmark quality for the group'},
+      {icon:'budget',title:'Budget',value:'Premium specification delivered within approved budget — zero cost overruns or claims'},
+      {icon:'shield',title:'Safety',value:'Zero incidents across a live banking environment — zero public risk events across 12 months'}
+    ],
+    review:{quote:'The lobby transformation signals exactly what FirstBank represents — permanence, quality, and institutional confidence. Alloy delivered a space our leadership and customers are proud of.',author:'Tokunbo A.',role:'Group Head, Facilities Management, FirstBank',rating:5,initials:'TA'}
+  }
+};
+
+const MORE_PREVIEWS = [
+  {id:'british-council',title:'British Council Lagos',client:'British Council',year:'2024',img:'construction_images/services-interior-01.jpeg'},
+  {id:'rccg',title:'Regional Worship Centre',client:'RCCG',year:'2024',img:'construction_images/services-structural-03.jpeg'},
+  {id:'tcn-substation',title:'Substation Civil Works',client:'TCN',year:'2023',img:'construction_images/services-structural-01.jpeg'},
+  {id:'nnpc-refit',title:'NNPC Floor Refit',client:'NNPC',year:'2023',img:'construction_images/services-interior-05.jpeg'},
+  {id:'unilag-faculty',title:'Faculty Extension',client:'UNILAG',year:'2023',img:'construction_images/services-facade-03.jpeg'},
+  {id:'fmoh-diagnostic',title:'Diagnostic Centre',client:'FMOH',year:'2022',img:'construction_images/services-interior-09.jpeg'},
+  {id:'nia-heritage',title:'Heritage Restoration',client:'NIA Lagos',year:'2022',img:'construction_images/services-facade-04.jpeg'},
+  {id:'firstbank-hq',title:'Corporate HQ Build-Out',client:'FirstBank',year:'2024',img:'construction_images/services-facade-05.jpeg'}
+];
+
+const EVAL_ICONS = {
+  clock:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  check:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>',
+  budget:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M12 15a2 2 0 100-4 2 2 0 000 4z"/></svg>',
+  shield:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/></svg>'
+};
+
+function render(id) {
+  const p = PROJECTS[id];
+  if (!p) { document.body.innerHTML = '<div style="padding:120px 32px;font-family:sans-serif;color:#fff;background:#080808;min-height:100vh;"><h1>Project not found.</h1><a href="index.html" style="color:#E8231A;">← Back to site</a></div>'; return; }
+
+  document.title = p.title + ' — Alloy Contracting Services';
+
+  const heroImg = document.getElementById('proj-hero-img');
+  heroImg.style.backgroundImage = "url('" + p.image + "')";
+  setTimeout(() => heroImg.classList.add('loaded'), 100);
+  document.getElementById('bc-title').textContent = p.title;
+  document.getElementById('hero-sector').textContent = p.sector;
+  document.getElementById('hero-title').textContent = p.title;
+  document.getElementById('hero-sub').textContent = p.subtitle;
+
+  document.getElementById('stat-client').textContent   = p.client;
+  document.getElementById('stat-value').textContent    = p.value;
+  document.getElementById('stat-duration').textContent = p.duration;
+  document.getElementById('stat-year').textContent     = p.year;
+  document.getElementById('stat-location').textContent = p.location;
+
+  document.getElementById('scope-intro').textContent = p.scopeIntro;
+  const scopeList = document.getElementById('scope-list');
+  scopeList.innerHTML = p.scope.map((item, i) =>
+    '<div class="scope-item reveal" style="transition-delay:' + (i*0.08) + 's">' +
+    '<div class="scope-num">' + String(i+1).padStart(2,'0') + '</div>' +
+    '<div class="scope-text">' + item + '</div></div>'
+  ).join('');
+  document.getElementById('scope-image').style.backgroundImage = "url('" + p.image + "')";
+
+  const evalGrid = document.getElementById('eval-grid');
+  evalGrid.innerHTML = p.evaluation.map(e =>
+    '<div class="eval-card reveal">' +
+    '<div class="eval-icon">' + (EVAL_ICONS[e.icon] || EVAL_ICONS.check) + '</div>' +
+    '<div class="eval-title">' + e.title + '</div>' +
+    '<div class="eval-value">' + e.value + '</div>' +
+    '</div>'
+  ).join('');
+
+  const r = p.review;
+  document.getElementById('stars').innerHTML = Array(r.rating).fill('<span class="star">★</span>').join('');
+  document.getElementById('review-quote').textContent = r.quote;
+  document.getElementById('reviewer-ava').textContent = r.initials;
+  document.getElementById('reviewer-name').textContent = r.author;
+  document.getElementById('reviewer-role').textContent = r.role;
+
+  const moreGrid = document.getElementById('more-grid');
+  const others = MORE_PREVIEWS.filter(m => m.id !== id).slice(0,3);
+  moreGrid.innerHTML = others.map(m =>
+    '<a class="more-card reveal" href="project.html?id=' + m.id + '">' +
+    '<div class="more-img" style="background-image:url(\'' + m.img + '\')"></div>' +
+    '<div class="more-view"><span>View Project</span></div>' +
+    '<div class="more-meta"><div class="yr">' + m.year + '</div><h4>' + m.title + '</h4><div class="cli">' + m.client + '</div></div>' +
+    '</a>'
+  ).join('');
+
+  setTimeout(() => {
+    document.querySelectorAll('.sat-fill').forEach(bar => { bar.style.width = bar.dataset.width + '%'; });
+  }, 600);
+
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+}
+
+const burger = document.getElementById('nav-burger');
+const mob = document.getElementById('mobile-menu');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  mob.classList.toggle('open');
+  document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+});
+mob.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => { burger.classList.remove('open'); mob.classList.remove('open'); document.body.style.overflow = ''; });
+});
+
+const id = new URLSearchParams(window.location.search).get('id') || 'british-council';
+render(id);
+})();
+</script>
+</body>
+</html>

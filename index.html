@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alloy Contracting Services — Built for Institutions. Built to Last.</title>
+<meta name="description" content="Nigeria's trusted construction, contracting and procurement partner for institutional clients. 180+ projects. 14 years. ₦42B delivered." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Variables ── */
+:root {
+  --black:   #080808;
+  --black-2: #0D0D0D;
+  --surf-1:  #111111;
+  --surf-2:  #181818;
+  --surf-r:  #120A09;
+  --red:     #E8231A;
+  --red-pale:#FF5A52;
+  --red-deep:#B51C15;
+  --line:    rgba(255,255,255,0.07);
+  --line-m:  rgba(255,255,255,0.13);
+  --txt-1:   rgba(255,255,255,0.90);
+  --txt-2:   rgba(255,255,255,0.52);
+  --txt-3:   rgba(255,255,255,0.28);
+  --white:   #FFFFFF;
+  --serif: 'Cormorant Garamond','Times New Roman',serif;
+  --sans:  'Inter',system-ui,sans-serif;
+  --red-grad: linear-gradient(135deg,#C8180F 0%,#E8231A 50%,#C8180F 100%);
+  --ease-out: cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ── Reset ── */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--txt-1);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+
+/* ── Utilities ── */
+.container { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+
+.descriptor {
+  font-family: var(--sans);
+  font-weight: 500; letter-spacing: 0.28em;
+  text-transform: uppercase; font-size: 11px;
+  color: var(--red);
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.descriptor::before {
+  content: ""; display: inline-block;
+  width: 32px; height: 1px; background: var(--red); flex-shrink: 0;
+}
+.descriptor.muted { color: var(--txt-3); }
+.descriptor.muted::before { background: var(--txt-3); }
+
+.red-text {
+  background: var(--red-grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans);
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+  padding: 15px 26px;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease,
+              background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  cursor: pointer; border: none;
+}
+.btn-red  { background: var(--red-grad); color: var(--white); }
+.btn-red:hover  { transform: translateY(-2px); box-shadow: 0 20px 40px -20px rgba(232,35,26,0.55); }
+.btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.65); }
+.btn-outline { background: rgba(255,255,255,0.05); color: var(--txt-1); border: 1px solid rgba(255,255,255,0.15); }
+.btn-outline:hover { border-color: var(--red); background: rgba(232,35,26,0.07); color: var(--white); }
+.btn-white { background: var(--white); color: var(--red); border: none; }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -20px rgba(0,0,0,0.4); }
+
+/* ── Reveal ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ════════════════════════ NAV ════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
+}
+.nav.scrolled {
+  background: rgba(8,8,8,0.96);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: var(--line);
+  padding: 12px 16px;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-logo-img { width: 32px; height: 32px; object-fit: contain; }
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+.nav-wordmark .a { font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: 0.18em; color: var(--white); }
+.nav-wordmark .c { font-size: 8px; letter-spacing: 0.34em; color: var(--red); margin-top: 4px; text-transform: uppercase; }
+
+/* Desktop nav links — hidden on mobile, shown at 780px+ */
+.nav-links { display: none; }
+.nav-cta-desktop { display: none; }
+
+/* Burger — shown on mobile */
+.nav-burger { display: flex; flex-direction: column; gap: 5px; width: 32px; padding: 4px 0; cursor: pointer; }
+.nav-burger span { display: block; width: 100%; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile overlay menu */
+.mobile-menu {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99;
+  background: rgba(8,8,8,0.99);
+  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+  opacity: 0; transition: opacity 0.35s ease;
+}
+.mobile-menu.open { display: flex; opacity: 1; }
+.mobile-menu a, .mobile-menu button {
+  font-family: var(--serif); font-size: 34px; letter-spacing: 0.06em;
+  color: var(--txt-1); transition: color 0.2s;
+}
+.mobile-menu a:hover, .mobile-menu button:hover { color: var(--red); }
+.mobile-menu .mobile-cta {
+  font-family: var(--sans);
+  font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600;
+  padding: 16px 36px; background: var(--red-grad); color: var(--white); margin-top: 12px;
+}
+
+/* ════════════════════════ HERO ════════════════════════ */
+.hero { position: relative; min-height: 100vh; overflow: hidden; display: flex; align-items: center; }
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('steel-bridge-structure-upward-view-cloudy-sky-industrial-design-background.jpg');
+  background-size: cover; background-position: center 30%;
+}
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5,3,2,0.97) 0%, rgba(5,3,2,0.94) 35%, rgba(5,3,2,0.70) 56%, rgba(5,3,2,0.38) 72%, rgba(5,3,2,0.22) 100%),
+    linear-gradient(180deg, rgba(5,3,2,0.60) 0%, transparent 18%, rgba(5,3,2,0.93) 100%);
+}
+.hero-content { position: relative; z-index: 3; padding: 90px 0 100px; width: 100%; }
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
+  opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
+}
+.hero-eyebrow .dot {
+  width: 8px; height: 8px; background: var(--red); border-radius: 50%;
+  box-shadow: 0 0 14px var(--red), 0 0 28px rgba(232,35,26,0.35);
+  animation: pulse 3s ease infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 14px var(--red), 0 0 28px rgba(232,35,26,0.35); }
+  50%      { box-shadow: 0 0 7px var(--red), 0 0 14px rgba(232,35,26,0.18); }
+}
+.hero h1 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: 36px; line-height: 1.06; letter-spacing: -0.012em; color: var(--white);
+  margin-bottom: 20px; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.35s forwards;
+}
+.hero h1 em { font-style: italic; }
+.hero p.lede {
+  font-size: 15px; line-height: 1.72; color: rgba(255,255,255,0.65);
+  margin-bottom: 32px; max-width: 480px;
+  opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards;
+}
+.hero-ctas {
+  display: flex; gap: 12px; flex-direction: column;
+  opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.65s forwards;
+}
+.hero-ctas .btn { width: 100%; justify-content: center; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stats bar */
+.hero-stats {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: rgba(5,3,2,0.90);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  opacity: 0; animation: fadeIn 1s ease 1s forwards;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.hero-stats-row { display: grid; grid-template-columns: repeat(4,1fr); max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+.hero-stats-cell {
+  padding: 10px 6px; border-right: 1px solid rgba(255,255,255,0.08);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+}
+.hero-stats-cell:last-child { border-right: none; }
+.hero-stats-num { font-family: var(--serif); font-size: 18px; font-weight: 500; line-height: 1; letter-spacing: -0.01em; }
+.hero-stats-lbl strong { display: block; font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.80); }
+.hero-stats-lbl span { display: none; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.30); }
+
+/* ════════════════════════ TRUST STRIP ════════════════════════ */
+.trust { background: var(--black-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 40px 0; }
+.trust-label { text-align: center; margin-bottom: 24px; }
+.trust-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+}
+.trust-cell {
+  padding: 18px 10px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  text-align: center; font-family: var(--serif);
+  font-size: 18px; font-weight: 500; color: var(--txt-2); letter-spacing: 0.03em;
+  transition: color 0.25s, background 0.25s; cursor: default;
+}
+.trust-cell:hover { color: var(--red); background: rgba(232,35,26,0.05); }
+.trust-cell .sub {
+  display: block; font-family: var(--sans);
+  font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--txt-3); margin-top: 5px; font-weight: 400;
+}
+
+/* ════════════════════════ SERVICES ════════════════════════ */
+.services { padding: 64px 0 56px; background: var(--black); position: relative; }
+.services::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent); opacity: 0.2;
+}
+.s-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+.s-head h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(28px,7vw,52px); line-height: 1.04; letter-spacing: -0.012em; color: var(--txt-1); margin-top: 12px;
+}
+.s-head .right { font-size: 14px; line-height: 1.68; color: var(--txt-2); }
+.svc-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.svc-card {
+  background: var(--surf-1); border: 1px solid var(--line);
+  padding: 26px 22px 24px; position: relative;
+  transition: transform 0.3s var(--ease-out), border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; overflow: hidden; display: flex; flex-direction: column;
+}
+.svc-card::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 56px; height: 3px;
+  background: var(--red-grad); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s var(--ease-out);
+}
+.svc-card:hover { transform: translateY(-4px); border-color: rgba(232,35,26,0.32); box-shadow: 0 20px 50px -24px rgba(232,35,26,0.18); }
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-icon {
+  width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;
+  background: rgba(232,35,26,0.1); border: 1px solid rgba(232,35,26,0.2);
+  color: var(--red); margin-bottom: 16px; flex-shrink: 0;
+}
+.svc-card h3 { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--txt-1); line-height: 1.15; margin-bottom: 9px; }
+.svc-card p { font-size: 13px; line-height: 1.65; color: var(--txt-2); flex: 1; }
+.svc-arr {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+  color: var(--red); opacity: 0; transform: translateX(-8px);
+  transition: opacity 0.3s ease, transform 0.3s var(--ease-out);
+}
+.svc-card:hover .svc-arr { opacity: 1; transform: translateX(0); }
+
+/* ════════════════════════ WHY CHOOSE ════════════════════════ */
+.why { background: var(--surf-r); padding: 64px 0; }
+.why-head {
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 12px; margin-bottom: 36px; padding-bottom: 20px;
+  border-bottom: 1px solid rgba(232,35,26,0.1);
+}
+.why-head h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(28px,7vw,52px); line-height: 1.04; letter-spacing: -0.012em; color: var(--txt-1); margin-top: 12px;
+}
+.why-head .est { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); font-weight: 500; }
+.why-body { display: grid; grid-template-columns: 1fr; gap: 32px; }
+.why-photo {
+  position: relative; aspect-ratio: 4/3;
+  background: #110909 center/cover no-repeat;
+  overflow: hidden; border: 1px solid rgba(232,35,26,0.12);
+}
+.why-photo::before { content: ""; position: absolute; inset: 12px; border: 1px solid rgba(232,35,26,0.25); pointer-events: none; z-index: 1; }
+.why-badge {
+  position: absolute; top: 20px; right: 20px; z-index: 2;
+  background: var(--red-grad); color: var(--white); padding: 12px 16px; text-align: center; line-height: 1;
+}
+.why-badge .n { font-family: var(--serif); font-size: 28px; font-weight: 600; }
+.why-badge .l { display: block; margin-top: 5px; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; font-family: var(--sans); font-weight: 500; }
+.why-list { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.why-card {
+  background: var(--surf-2); border: 1px solid var(--line);
+  padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+  transition: border-color 0.25s, transform 0.25s var(--ease-out), box-shadow 0.25s ease;
+}
+.why-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: 0 14px 36px -24px rgba(232,35,26,0.25); }
+.why-card.full { grid-column: auto; }
+.why-card-ic { width: 42px; height: 42px; flex-shrink: 0; background: var(--red); display: flex; align-items: center; justify-content: center; color: var(--white); }
+.why-card-text strong { display: block; font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--txt-1); line-height: 1.15; }
+.why-card-text span { display: block; font-size: 12px; color: var(--txt-2); margin-top: 3px; }
+
+/* ════════════════════════ PROJECTS ════════════════════════ */
+.projects { padding: 64px 0 56px; background: var(--black-2); position: relative; }
+.proj-head { display: flex; flex-direction: column; gap: 18px; margin-bottom: 28px; }
+.proj-head h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(28px,7vw,52px); line-height: 1.04; letter-spacing: -0.012em; color: var(--txt-1); margin-top: 12px;
+}
+.proj-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.proj-filter { padding: 8px 14px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; background: transparent; border: 1px solid var(--line-m); color: var(--txt-3); cursor: pointer; transition: all 0.2s; }
+.proj-filter:hover { border-color: var(--red); color: var(--red); }
+.proj-filter.active { background: var(--red); border-color: var(--red); color: var(--white); }
+.proj-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.proj-card {
+  position: relative; aspect-ratio: 4/3;
+  overflow: hidden; border: 1px solid var(--line);
+  transition: transform 0.35s var(--ease-out), border-color 0.35s, box-shadow 0.35s;
+  display: block; text-decoration: none;
+}
+.proj-card:hover { transform: translateY(-5px); border-color: var(--red); box-shadow: 0 24px 52px -28px rgba(232,35,26,0.28); }
+.proj-card[data-hidden="true"] { display: none; }
+.pimg { position: absolute; inset: 0; background: #110909 center/cover no-repeat; transition: transform 0.8s var(--ease-out); }
+.proj-card:hover .pimg { transform: scale(1.06); }
+.pimg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,8,0.06) 0%, rgba(8,8,8,0.28) 45%, rgba(8,8,8,0.92) 100%); }
+.pmeta { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px 18px 20px; z-index: 2; border-left: 3px solid var(--red); }
+.pmeta .yr { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red-pale); margin-bottom: 4px; }
+.pmeta h4 { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--white); line-height: 1.15; margin-bottom: 4px; }
+.pmeta .client { font-size: 12px; color: rgba(255,255,255,0.48); }
+.ptag { position: absolute; top: 12px; left: 12px; z-index: 2; font-family: 'Courier New',monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(8,8,8,0.78); border: 1px solid rgba(232,35,26,0.35); color: rgba(255,255,255,0.88); padding: 4px 8px; }
+.psector { position: absolute; top: 12px; right: 12px; z-index: 2; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600; background: var(--red); color: var(--white); padding: 4px 8px; }
+.pview { position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; justify-content: center; background: rgba(232,35,26,0.82); opacity: 0; transition: opacity 0.3s ease; }
+.proj-card:hover .pview { opacity: 1; }
+.pview span { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600; color: var(--white); display: flex; align-items: center; gap: 10px; }
+.proj-foot { text-align: center; margin-top: 36px; }
+
+/* ════════════════════════ TESTIMONIALS ════════════════════════ */
+.testimonials { padding: 64px 0; background: var(--black); position: relative; }
+.testi-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
+.testi-left h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(28px,7vw,48px); line-height: 1.05; letter-spacing: -0.012em; color: var(--white); margin: 12px 0 24px;
+}
+.testi-cards { display: flex; flex-direction: column; gap: 10px; }
+.testi-card {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--line);
+  padding: 18px 20px; display: grid; grid-template-columns: 48px 1fr;
+  gap: 14px; align-items: start; cursor: pointer; transition: border-color 0.25s, background 0.25s;
+}
+.testi-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(232,35,26,0.35); }
+.testi-card.active { border-color: var(--red); }
+.testi-ava { width: 48px; height: 48px; background: var(--red-grad); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--white); flex-shrink: 0; }
+.testi-name { font-family: var(--serif); font-size: 17px; font-weight: 600; color: rgba(255,255,255,0.88); line-height: 1; }
+.testi-role { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--txt-3); margin: 5px 0 8px; padding-bottom: 8px; border-bottom: 1px solid var(--line); width: fit-content; padding-right: 20px; }
+.testi-quote { font-size: 13px; line-height: 1.58; color: var(--txt-2); }
+.testi-photo {
+  display: none;
+  position: relative; aspect-ratio: 4/5;
+  background: #110909 center/cover no-repeat;
+  border: 1px solid var(--line); overflow: hidden;
+}
+.testi-photo::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(232,35,26,0.28); pointer-events: none; z-index: 1; }
+.testi-quote-mark { position: absolute; top: 22px; right: 22px; z-index: 2; width: 54px; height: 54px; background: var(--red); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 56px; font-weight: 700; color: var(--white); line-height: 0.6; padding-bottom: 14px; }
+.testi-action { margin-top: 24px; }
+
+/* ════════════════════════ CTA ════════════════════════ */
+.cta-section { padding: 64px 0; background: var(--red); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(120deg,rgba(255,255,255,0.04) 0 1.5px,transparent 1.5px 28px); pointer-events: none; }
+.cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+.cta-inner h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(28px,8vw,52px); line-height: 1.04; letter-spacing: -0.012em; color: var(--white); margin: 12px 0 16px; }
+.cta-inner p { font-size: 14px; line-height: 1.68; color: rgba(255,255,255,0.78); margin-bottom: 32px; }
+.cta-btns { display: flex; gap: 12px; flex-direction: column; align-items: stretch; }
+.cta-btns .btn { width: 100%; justify-content: center; }
+.cta-contacts { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.cta-contact-item .lbl { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.52); margin-bottom: 4px; }
+.cta-contact-item .val { font-family: var(--serif); font-size: 17px; color: var(--white); }
+
+/* ════════════════════════ FOOTER ════════════════════════ */
+.footer { background: var(--black); padding: 56px 0 28px; border-top: 1px solid var(--line); }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+.footer-brand-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.footer-logo-img { width: 36px; height: 36px; object-fit: contain; }
+.footer-wm-a { font-family: var(--serif); font-weight: 600; font-size: 18px; letter-spacing: 0.18em; color: var(--white); }
+.footer-wm-c { font-size: 8px; letter-spacing: 0.34em; color: var(--red); margin-top: 3px; text-transform: uppercase; display: block; }
+.footer-brand p { font-size: 13px; color: var(--txt-3); line-height: 1.7; margin-bottom: 18px; max-width: 280px; }
+.footer-socials { display: flex; gap: 8px; }
+.footer-social { width: 34px; height: 34px; border: 1px solid var(--line-m); color: var(--txt-3); display: flex; align-items: center; justify-content: center; transition: border-color 0.25s, color 0.25s; }
+.footer-social:hover { border-color: var(--red); color: var(--red-pale); }
+.footer-col h5 { font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; font-weight: 500; }
+.footer-col a, .footer-col address { display: block; font-size: 13px; color: var(--txt-3); padding: 4px 0; transition: color 0.2s; line-height: 1.6; font-style: normal; }
+.footer-col a:hover { color: var(--txt-1); }
+.footer-col .contact-item { display: flex; align-items: flex-start; gap: 8px; }
+.footer-col .contact-item svg { flex-shrink: 0; margin-top: 3px; color: var(--red); }
+.footer-bottom { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: var(--txt-3); letter-spacing: 0.08em; text-align: center; }
+
+/* ════════════════════════ TEAM ════════════════════════ */
+.team { padding: 64px 0; background: var(--black); position: relative; }
+.team-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+.team-head h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(28px,7vw,52px); line-height: 1.04; letter-spacing: -0.012em; color: var(--txt-1); margin-top: 12px;
+}
+.team-head .sub { font-size: 14px; line-height: 1.68; color: var(--txt-2); max-width: 460px; }
+.team-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.team-card {
+  position: relative; aspect-ratio: 3/4; overflow: hidden;
+  border: 1px solid var(--line);
+  transition: border-color 0.4s ease, transform 0.4s var(--ease-out), box-shadow 0.4s ease;
+}
+.team-card:hover { border-color: var(--red); transform: translateY(-5px); box-shadow: 0 24px 56px -28px rgba(232,35,26,0.30); }
+.team-photo {
+  position: absolute; inset: 0;
+  background: #111 center/cover no-repeat;
+  transition: transform 0.8s var(--ease-out), filter 0.5s ease;
+  filter: grayscale(30%) brightness(0.88);
+}
+.team-card:hover .team-photo { transform: scale(1.05); filter: grayscale(0%) brightness(1); }
+.team-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(8,8,8,0.12) 0%, rgba(8,8,8,0.08) 38%, rgba(8,8,8,0.95) 100%);
+}
+.team-num {
+  position: absolute; top: 16px; right: 16px; z-index: 2;
+  font-family: var(--serif); font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.28);
+}
+.team-meta {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 20px 20px 22px; z-index: 2;
+  border-left: 3px solid var(--red);
+  transition: transform 0.45s var(--ease-out);
+}
+.team-card:hover .team-meta { transform: translateY(-6px); }
+.team-name { font-family: var(--serif); font-size: clamp(22px,2.5vw,30px); font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 6px; }
+.team-role { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--red); font-weight: 500; }
+.team-bio {
+  font-size: 12px; line-height: 1.62; color: rgba(255,255,255,0.58);
+  margin-top: 10px; max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.5s var(--ease-out), opacity 0.4s ease 0.05s;
+}
+.team-card:hover .team-bio { max-height: 88px; opacity: 1; }
+
+/* ════════════════════════ RESPONSIVE — MOBILE FIRST ════════════════════════ */
+
+@media (min-width: 480px) {
+  .hero h1 { font-size: clamp(38px,9vw,54px); }
+  .hero-ctas { flex-direction: row; }
+  .hero-ctas .btn { width: auto; }
+  .hero-stats-cell { padding: 12px 10px; gap: 5px; }
+  .hero-stats-num { font-size: 20px; }
+  .hero-stats-lbl strong { font-size: 10px; }
+  .why-list { grid-template-columns: 1fr 1fr; }
+  .why-card.full { grid-column: 1 / -1; }
+  .cta-btns { flex-direction: row; justify-content: center; }
+  .cta-btns .btn { width: auto; }
+  .cta-contacts { flex-direction: row; flex-wrap: wrap; gap: 24px; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 640px) {
+  .container { padding: 0 20px; }
+  .hero-stats-row { padding: 0 20px; }
+  .hero-stats-cell { padding: 14px 12px; gap: 8px; }
+  .hero-stats-num { font-size: 22px; }
+  .hero-stats-lbl strong { font-size: 11px; }
+  .trust { padding: 52px 0; }
+  .trust-grid { grid-template-columns: repeat(3,1fr); }
+  .trust-cell { font-size: 20px; }
+  .services, .why, .projects, .testimonials, .team { padding: 80px 0; }
+  .cta-section { padding: 80px 0; }
+  .footer { padding: 64px 0 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-grid > .footer-brand { grid-column: 1 / -1; }
+  .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+  .proj-grid { grid-template-columns: repeat(2,1fr); }
+  .proj-card { aspect-ratio: 3/4; }
+  .svc-grid { grid-template-columns: repeat(2,1fr); gap: 14px; }
+  .s-head { margin-bottom: 44px; }
+}
+
+@media (min-width: 780px) {
+  .container { padding: 0 28px; }
+  .nav { padding: 20px 32px; }
+  .nav.scrolled { padding: 14px 32px; }
+  .nav-logo-img { width: 38px; height: 38px; }
+  .nav-wordmark .a { font-size: 20px; }
+  .nav-links {
+    display: flex; gap: 28px; align-items: center;
+  }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.05em; color: var(--txt-2);
+    transition: color 0.2s; position: relative; padding-bottom: 2px;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1.5px; background: var(--red);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.25s var(--ease-out);
+  }
+  .nav-links a:hover { color: var(--red-pale); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--red-pale); }
+  .nav-cta-desktop {
+    display: inline-flex; align-items: center;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+    padding: 10px 18px; background: var(--red-grad); color: var(--white);
+    margin-left: 4px; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;
+  }
+  .nav-cta-desktop:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgba(232,35,26,0.65); }
+  .nav-burger { display: none; }
+  .hero-content { width: 65%; padding: 110px 0 140px; }
+  .hero h1 { font-size: clamp(40px,5.5vw,60px); }
+  .hero p.lede { font-size: 16px; }
+  .hero-stats-row { padding: 0 28px; }
+  .hero-stats-cell { flex-direction: row; align-items: center; padding: 18px 16px; gap: 14px; }
+  .hero-stats-num { font-size: 26px; }
+  .hero-stats-lbl strong { font-size: 12px; }
+  .hero-stats-lbl span { display: block; }
+  .s-head { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+  .s-head .right { max-width: 360px; flex-shrink: 0; font-size: 15px; }
+  .why-body { grid-template-columns: 1fr 1.2fr; gap: 48px; }
+  .why-photo { aspect-ratio: 4/5; }
+  .why-head { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+  .proj-head { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .trust-grid { grid-template-columns: repeat(3,1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+  .footer-grid > .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (min-width: 900px) {
+  .nav { padding: 22px 40px; }
+  .nav.scrolled { padding: 14px 40px; }
+  .container { padding: 0 32px; }
+  .hero-content { width: 55%; }
+  .hero-stats-row { padding: 0 32px; }
+  .hero-stats-cell { padding: 20px 20px; gap: 16px; }
+  .hero-stats-num { font-size: 30px; }
+  .services, .why, .projects, .testimonials, .team { padding: 96px 0; }
+  .cta-section { padding: 96px 0; }
+  .testi-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
+  .testi-photo { display: block; }
+  .why-list { grid-template-columns: 1fr 1fr; }
+  .why-card.full { grid-column: 1 / -1; }
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 48px; }
+  .footer-grid > .footer-brand { grid-column: auto; }
+  .footer-bottom { flex-direction: row; justify-content: space-between; }
+}
+
+@media (min-width: 1080px) {
+  .hero-content { width: 46%; padding: 120px 0 150px; }
+  .hero h1 { font-size: clamp(52px,4.5vw,66px); }
+  .hero-stats-row { padding: 0 32px; }
+  .hero-stats-cell { padding: 20px 24px; gap: 18px; }
+  .hero-stats-num { font-size: 34px; }
+  .hero-stats-lbl strong { font-size: 13px; }
+  .services, .why, .projects, .testimonials, .team { padding: 112px 0; }
+  .cta-section { padding: 100px 0; }
+  .svc-grid { grid-template-columns: repeat(3,1fr); }
+  .team-grid { grid-template-columns: repeat(4,1fr); }
+  .team-head { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+  .team-head .sub { max-width: 380px; flex-shrink: 0; font-size: 15px; }
+  .team-head h2 { font-size: clamp(38px,4vw,54px); }
+  .proj-grid { grid-template-columns: repeat(4,1fr); }
+  .proj-card { aspect-ratio: 3/4; }
+  .trust-grid { grid-template-columns: repeat(6,1fr); }
+  .trust-cell { font-size: 21px; }
+  .footer { padding: 80px 0 32px; }
+  .footer-grid { gap: 56px; }
+  .s-head h2, .proj-head h2, .why-head h2 { font-size: clamp(38px,4vw,54px); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand" data-nav-link="top">
+    <img src="WhatsApp Image 2026-05-18 at 9.03.54 AM-Photoroom.png" class="nav-logo-img" alt="Alloy logo">
+    <div class="nav-wordmark">
+      <span class="a">ALLOY</span>
+      <span class="c">Contracting Services</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#about" data-nav-link="about">About</a>
+    <a href="#services" data-nav-link="services">Services</a>
+    <a href="#projects" data-nav-link="projects">Projects</a>
+    <a href="#testimonials" data-nav-link="testimonials">Testimonials</a>
+    <a href="#team" data-nav-link="team">Team</a>
+    <a href="#contact" data-nav-link="contact">Contact</a>
+    <button class="nav-cta-desktop" data-scroll-to="contact">Get a Quote</button>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#testimonials" class="mobile-link">Testimonials</a>
+  <a href="#team" class="mobile-link">Team</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <button class="mobile-cta mobile-link" data-scroll-to="contact">Get a Quote</button>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="container" style="width:100%;position:relative;z-index:3;">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span class="descriptor" style="animation:none;opacity:1;color:rgba(255,255,255,0.6);">Construction · Contracting · Procurement</span>
+      </div>
+      <h1>Built for <em class="red-text">Institutions.</em><br>Built to Last.</h1>
+      <p class="lede">Nigeria's trusted construction and contracting partner — delivering institutional-grade infrastructure for corporations, government, and the organisations that hold the country together.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-red" data-scroll-to="contact">
+          Get a Free Quote
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn btn-ghost" data-scroll-to="projects">View Our Projects</button>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stats-row">
+      <div class="hero-stats-cell">
+        <div class="hero-stats-num red-text">180+</div>
+        <div class="hero-stats-lbl"><strong>Projects Delivered</strong><span>Across sectors nationwide</span></div>
+      </div>
+      <div class="hero-stats-cell">
+        <div class="hero-stats-num red-text">₦42B</div>
+        <div class="hero-stats-lbl"><strong>Value Constructed</strong><span>Aggregate contract value</span></div>
+      </div>
+      <div class="hero-stats-cell">
+        <div class="hero-stats-num red-text">14</div>
+        <div class="hero-stats-lbl"><strong>Years in Practice</strong><span>Continuous operation since 2012</span></div>
+      </div>
+      <div class="hero-stats-cell">
+        <div class="hero-stats-num red-text">100%</div>
+        <div class="hero-stats-lbl"><strong>Client Retention</strong><span>Institutional accounts</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST ══ -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-label">
+      <span class="descriptor muted">Trusted by institutions across Nigeria</span>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-cell">British Council<span class="sub">Lagos</span></div>
+      <div class="trust-cell">RCCG<span class="sub">Multi-site</span></div>
+      <div class="trust-cell">NNPC<span class="sub">Energy</span></div>
+      <div class="trust-cell">TCN<span class="sub">Power</span></div>
+      <div class="trust-cell">FMOH<span class="sub">Health</span></div>
+      <div class="trust-cell">UNILAG<span class="sub">Education</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="s-head reveal">
+      <div>
+        <span class="descriptor">Our Services</span>
+        <h2>Six disciplines.<br>One accountable partner.</h2>
+      </div>
+      <div class="right">We bring construction, contracting, and supply under a single engagement — so institutional clients work with one team that owns the outcome, not three vendors negotiating around it.</div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal reveal-delay-1" data-scroll-to="contact">
+        <div class="svc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 22V8l9-4 9 4v14M4 22h18M8 12h2M8 16h2M14 12h2M14 16h2M11 22v-4h4v4"/></svg></div>
+        <h3>Commercial Construction</h3>
+        <p>Ground-up offices, retail, and mixed-use facilities for institutional clients. Engineered to spec, delivered on schedule.</p>
+        <div class="svc-arr">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card reveal reveal-delay-2" data-scroll-to="contact">
+        <div class="svc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 22V6h2M5 6h14M19 6v6M19 12l-3 3M14 22v-7M11 18h6M9 22v-4"/></svg></div>
+        <h3>Institutional Builds</h3>
+        <p>Schools, hospitals, places of worship, government and civil infrastructure — built to outlast the contracts that commission them.</p>
+        <div class="svc-arr">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card reveal reveal-delay-3" data-scroll-to="contact">
+        <div class="svc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 4l6 6-3 3-6-6 3-3zM11 7l-7 7 3 3 7-7M3 22l4-4"/></svg></div>
+        <h3>Renovation &amp; Retrofit</h3>
+        <p>Heritage, MEP upgrades, and live-site refurbishments under tight schedules. Operating institutions stay running while we work.</p>
+        <div class="svc-arr">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card reveal reveal-delay-1" data-scroll-to="contact">
+        <div class="svc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 5h18v14H3zM3 9h18M7 13h6M7 16h4"/></svg></div>
+        <h3>Project Management</h3>
+        <p>Planning, scheduling, supervision, and reporting to institutional standards. One accountable point of contact for complex scopes.</p>
+        <div class="svc-arr">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card reveal reveal-delay-2" data-scroll-to="contact">
+        <div class="svc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 22V4h12v18M6 8h12M6 12h12M6 16h12M9 4V2h6v2"/></svg></div>
+        <h3>Structural Engineering</h3>
+        <p>Foundation, concrete, and steel works engineered for permanence. Every element documented, verified, and certified to specification.</p>
+        <div class="svc-arr">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="svc-card reveal reveal-delay-3" data-scroll-to="contact">
+        <div class="svc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 17V6h11v11M13 10h5l3 4v3h-8M5 17a2 2 0 104 0 2 2 0 10-4 0M14 17a2 2 0 104 0 2 2 0 10-4 0"/></svg></div>
+        <h3>Supply &amp; Procurement</h3>
+        <p>Verified material sourcing, plant supply, and on-site logistics. Direct relationships with manufacturers — specification met, no substitutes.</p>
+        <div class="svc-arr">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY CHOOSE ══ -->
+<section class="why" id="about">
+  <div class="container">
+    <div class="why-head reveal">
+      <div>
+        <span class="descriptor">Why Choose Alloy</span>
+        <h2>Reliability isn't a claim.<br>It's a record.</h2>
+      </div>
+      <div class="est">Established 2012 · Lagos, Nigeria</div>
+    </div>
+    <div class="why-body">
+      <div class="why-photo reveal" style="background-image:url('construction_images/about-us-01.jpeg');">
+        <div class="why-badge"><div class="n">14+</div><span class="l">Years on Site</span></div>
+      </div>
+      <div class="why-list reveal reveal-delay-2">
+        <div class="why-card">
+          <div class="why-card-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 14a6 6 0 100-12 6 6 0 000 12zM8 12l-2 9 6-3 6 3-2-9"/></svg></div>
+          <div class="why-card-text"><strong>14+ Years</strong><span>Continuous operation since 2012</span></div>
+        </div>
+        <div class="why-card">
+          <div class="why-card-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="why-card-text"><strong>Licensed &amp; Bonded</strong><span>Fully insured to institutional thresholds</span></div>
+        </div>
+        <div class="why-card">
+          <div class="why-card-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 13a3 3 0 100-6 3 3 0 000 6zM16 13a3 3 0 100-6 3 3 0 000 6zM3 22v-2a4 4 0 014-4h2a4 4 0 014 4v2M13 22v-2a4 4 0 014-4h0a4 4 0 014 4v2"/></svg></div>
+          <div class="why-card-text"><strong>Senior-led Team</strong><span>Principals on every engagement</span></div>
+        </div>
+        <div class="why-card">
+          <div class="why-card-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 4h12l3 5-9 12L3 9l3-5zM3 9h18M9 4l3 17M15 4l-3 17"/></svg></div>
+          <div class="why-card-text"><strong>Premium Materials</strong><span>Specification met — no substitutes</span></div>
+        </div>
+        <div class="why-card full">
+          <div class="why-card-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div class="why-card-text"><strong>On-Time Delivery</strong><span>Milestone-based reporting and accountability on every project</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="proj-head reveal">
+      <div>
+        <span class="descriptor">Our Projects</span>
+        <h2>Evidence over claims.</h2>
+      </div>
+      <div class="proj-filters">
+        <button class="proj-filter active" data-filter="All">All</button>
+        <button class="proj-filter" data-filter="Institutional">Institutional</button>
+        <button class="proj-filter" data-filter="Commercial">Commercial</button>
+        <button class="proj-filter" data-filter="Religious">Religious</button>
+        <button class="proj-filter" data-filter="Civil">Civil</button>
+      </div>
+    </div>
+    <div class="proj-grid" id="proj-grid">
+      <a class="proj-card reveal reveal-delay-1" data-sector="Institutional" href="project.html?id=british-council">
+        <div class="pimg" style="background-image:url('construction_images/services-interior-01.jpeg');"></div>
+        <span class="ptag">Interior fit-out</span><span class="psector">Institutional</span>
+        <div class="pview"><span>View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="pmeta"><div class="yr">2024</div><h4>British Council Lagos</h4><div class="client">British Council · Multi-phase fit-out</div></div>
+      </a>
+      <a class="proj-card reveal reveal-delay-2" data-sector="Religious" href="project.html?id=rccg">
+        <div class="pimg" style="background-image:url('construction_images/services-structural-03.jpeg');"></div>
+        <span class="ptag">Structural works</span><span class="psector">Religious</span>
+        <div class="pview"><span>View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="pmeta"><div class="yr">2024</div><h4>Regional Worship Centre</h4><div class="client">RCCG · 12,000-seat auditorium</div></div>
+      </a>
+      <a class="proj-card reveal reveal-delay-3" data-sector="Civil" href="project.html?id=tcn-substation">
+        <div class="pimg" style="background-image:url('construction_images/services-structural-01.jpeg');"></div>
+        <span class="ptag">Civil works</span><span class="psector">Civil</span>
+        <div class="pview"><span>View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="pmeta"><div class="yr">2023</div><h4>Substation Civil Works</h4><div class="client">TCN · 330kV transmission</div></div>
+      </a>
+      <a class="proj-card reveal reveal-delay-4" data-sector="Commercial" href="project.html?id=nnpc-refit">
+        <div class="pimg" style="background-image:url('construction_images/services-interior-05.jpeg');"></div>
+        <span class="ptag">Executive interior</span><span class="psector">Commercial</span>
+        <div class="pview"><span>View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="pmeta"><div class="yr">2023</div><h4>NNPC Floor Refit</h4><div class="client">NNPC Towers · Executive floor</div></div>
+      </a>
+      <a class="proj-card reveal reveal-delay-1" data-sector="Institutional" href="project.html?id=unilag-faculty">
+        <div class="pimg" style="background-image:url('construction_images/services-facade-03.jpeg');"></div>
+        <span class="ptag">Facade</span><span class="psector">Institutional</span>
+        <div class="pview"><span>View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="pmeta"><div class="yr">2023</div><h4>Faculty Extension</h4><div class="client">UNILAG · 4-storey academic block</div></div>
+      </a>
+      <a class="proj-card reveal reveal-delay-2" data-sector="Institutional" href="project.html?id=fmoh-diagnostic">
+        <div class="pimg" style="background-image:url('construction_images/services-interior-09.jpeg');"></div>
+        <span class="ptag">Interior</span><span class="psector">Institutional</span>
+        <div class="pview"><span>View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="pmeta"><div class="yr">2022</div><h4>Diagnostic Centre</h4><div class="client">FMOH Abuja · Specialist medical facility</div></div>
+      </a>
+      <a class="proj-card reveal reveal-delay-3" data-sector="Civil" href="project.html?id=nia-heritage">
+        <div class="pimg" style="background-image:url('construction_images/services-facade-04.jpeg');"></div>
+        <span class="ptag">Facade</span><span class="psector">Civil</span>
+        <div class="pview"><span>View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="pmeta"><div class="yr">2022</div><h4>Heritage Restoration</h4><div class="client">NIA Lagos · Historic facade</div></div>
+      </a>
+      <a class="proj-card reveal reveal-delay-4" data-sector="Commercial" href="project.html?id=firstbank-hq">
+        <div class="pimg" style="background-image:url('construction_images/services-facade-05.jpeg');"></div>
+        <span class="ptag">Exterior</span><span class="psector">Commercial</span>
+        <div class="pview"><span>View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="pmeta"><div class="yr">2024</div><h4>Corporate HQ Build-Out</h4><div class="client">FirstBank Lagos · Flagship lobby</div></div>
+      </a>
+    </div>
+    <div class="proj-foot reveal">
+      <button class="btn btn-outline" data-scroll-to="contact">
+        Discuss Your Project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testi-grid">
+      <div class="testi-left">
+        <div class="reveal"><span class="descriptor">Client Testimonials</span></div>
+        <h2 class="reveal reveal-delay-1">What our clients say.</h2>
+        <div class="testi-cards" id="testi-cards">
+          <div class="testi-card active reveal reveal-delay-2" data-testi="0">
+            <div class="testi-ava">AA</div>
+            <div>
+              <div class="testi-name">Adaeze A.</div>
+              <div class="testi-role">Facilities Director, NGO Sector</div>
+              <p class="testi-quote">"Alloy delivered our Lagos facility on schedule and to specification. Their reporting discipline made our board oversight completely straightforward."</p>
+            </div>
+          </div>
+          <div class="testi-card reveal reveal-delay-3" data-testi="1">
+            <div class="testi-ava">OO</div>
+            <div>
+              <div class="testi-name">Oluseyi O.</div>
+              <div class="testi-role">Diocese Project Lead</div>
+              <p class="testi-quote">"From foundation to handover, the team treated our institution's standards as their own. The quality of the build is evident years later."</p>
+            </div>
+          </div>
+          <div class="testi-card reveal reveal-delay-4" data-testi="2">
+            <div class="testi-ava">MK</div>
+            <div>
+              <div class="testi-name">Musa K.</div>
+              <div class="testi-role">Corporate Estates Manager</div>
+              <p class="testi-quote">"We've engaged Alloy across three fit-outs. Each time — on time, on budget, and with a finish our principals were proud to show clients."</p>
+            </div>
+          </div>
+        </div>
+        <div class="testi-action reveal reveal-delay-5">
+          <button class="btn btn-red" data-scroll-to="contact">
+            Request a Free Quote
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="testi-photo reveal reveal-delay-2" style="background-image:url('construction_images/about-us-02.jpeg');">
+        <div class="testi-quote-mark">"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TEAM ══ -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="team-head reveal">
+      <div>
+        <span class="descriptor">Our Leadership</span>
+        <h2>The people behind<br>the build.</h2>
+      </div>
+      <div class="sub">Every Alloy engagement is led by a principal. Our senior team brings decades of on-site discipline to institutional clients — no handoffs, no junior-only delivery.</div>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85');"></div>
+        <span class="team-num">01</span>
+        <div class="team-meta">
+          <div class="team-name">Adewale Okonkwo</div>
+          <div class="team-role">Managing Director</div>
+          <div class="team-bio">Founded Alloy in 2012 after a decade at Julius Berger. Personally leads all strategic institutional relationships and major project sign-offs.</div>
+        </div>
+      </div>
+
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=85');"></div>
+        <span class="team-num">02</span>
+        <div class="team-meta">
+          <div class="team-name">Chinedu Eze</div>
+          <div class="team-role">Director of Projects</div>
+          <div class="team-bio">18 years of programme delivery on government and commercial contracts. Responsible for milestone governance across all active Alloy engagements.</div>
+        </div>
+      </div>
+
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=85');"></div>
+        <span class="team-num">03</span>
+        <div class="team-meta">
+          <div class="team-name">Funmilayo Adeleke</div>
+          <div class="team-role">Chief Structural Engineer</div>
+          <div class="team-bio">COREN-registered engineer with 16 years specialising in institutional and civil infrastructure. Leads technical review and certification on all structural works.</div>
+        </div>
+      </div>
+
+      <div class="team-card reveal reveal-delay-4">
+        <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=85');"></div>
+        <span class="team-num">04</span>
+        <div class="team-meta">
+          <div class="team-name">Babatunde Salami</div>
+          <div class="team-role">Head of Procurement</div>
+          <div class="team-bio">Manages material specification, vendor qualification, and supply chain integrity. Ensures no substitution of specified materials on any Alloy contract.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BANNER ══ -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <span class="descriptor" style="color:rgba(255,255,255,0.6);">Start a Project</span>
+      <h2>Planning a construction project?</h2>
+      <p>Let Alloy bring institutional discipline, transparent reporting, and proven delivery to your next build. A senior partner responds within one business day.</p>
+      <div class="cta-btns">
+        <a class="btn btn-white" href="tel:+2341460880">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A18 18 0 013 6a2 2 0 012-2z"/></svg>
+          Call Us Now
+        </a>
+        <a class="btn btn-ghost" href="mailto:partnerships@alloycs.ng">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18v14H3zM3 5l9 8 9-8"/></svg>
+          Email Our Team
+        </a>
+      </div>
+      <div class="cta-contacts">
+        <div class="cta-contact-item">
+          <div class="lbl">Lagos Office</div>
+          <div class="val">14 Akin Adeshola Street, Victoria Island</div>
+        </div>
+        <div class="cta-contact-item">
+          <div class="lbl">Direct Line</div>
+          <div class="val">+234 (0) 1 460 8800</div>
+        </div>
+        <div class="cta-contact-item">
+          <div class="lbl">Email</div>
+          <div class="val">partnerships@alloycs.ng</div>
+        </div>
+        <div class="cta-contact-item">
+          <div class="lbl">WhatsApp</div>
+          <div class="val">+234 803 555 0142</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <img src="WhatsApp Image 2026-05-18 at 9.03.54 AM-Photoroom.png" class="footer-logo-img" alt="Alloy logo">
+          <div>
+            <div class="footer-wm-a">ALLOY</div>
+            <span class="footer-wm-c">Contracting Services</span>
+          </div>
+        </div>
+        <p>Nigeria's trusted construction, contracting, and supply partner — built for institutions, built to last. Established Lagos, 2012.</p>
+        <div class="footer-socials">
+          <a class="footer-social" href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 3a2 2 0 110 4 2 2 0 010-4z"/></svg></a>
+          <a class="footer-social" href="#" aria-label="Twitter/X"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+          <a class="footer-social" href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Commercial Construction</a>
+        <a href="#services">Institutional Builds</a>
+        <a href="#services">Renovation &amp; Retrofit</a>
+        <a href="#services">Project Management</a>
+        <a href="#services">Supply &amp; Procurement</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#about">About Alloy</a>
+        <a href="#projects">Our Projects</a>
+        <a href="#testimonials">Client Stories</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-8 8-13a8 8 0 10-16 0c0 5 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+          <address>14 Akin Adeshola Street<br>Victoria Island, Lagos</address>
+        </div>
+        <div class="contact-item" style="margin-top:8px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A18 18 0 013 6a2 2 0 012-2z"/></svg>
+          <a href="tel:+2341460880">+234 (0) 1 460 8800</a>
+        </div>
+        <div class="contact-item" style="margin-top:8px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h18v14H3zM3 5l9 8 9-8"/></svg>
+          <a href="mailto:partnerships@alloycs.ng">partnerships@alloycs.ng</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Alloy Contracting Services Ltd. RC 1,204,887</div>
+      <div>Built for Institutions. Built to Last.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  const nav = document.getElementById('nav');
+  const sections = ['top','about','services','projects','testimonials','team','contact'];
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+
+  function setActive(id) {
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.navLink === id));
+  }
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const el = document.getElementById(sections[i]);
+      if (el && el.getBoundingClientRect().top <= 120) { setActive(sections[i]); break; }
+    }
+  }, { passive: true });
+
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 60, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('[data-scroll-to]').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); scrollTo(el.dataset.scrollTo); });
+  });
+  document.querySelectorAll('[data-nav-link]').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); scrollTo(a.dataset.navLink); });
+  });
+
+  const burger = document.getElementById('nav-burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const href = a.getAttribute('href');
+      const target = a.dataset.scrollTo;
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+      if (target) setTimeout(() => scrollTo(target), 200);
+      else if (href && href.startsWith('#')) setTimeout(() => scrollTo(href.slice(1)), 200);
+    });
+  });
+
+  /* Project filter */
+  const projFilters = document.querySelectorAll('.proj-filter');
+  const projCards   = document.querySelectorAll('.proj-card');
+  projFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      projFilters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      projCards.forEach(card => {
+        const match = filter === 'All' || card.dataset.sector === filter;
+        card.style.display = match ? '' : 'none';
+        if (match) { card.classList.remove('visible'); setTimeout(() => card.classList.add('visible'), 20); }
+      });
+    });
+  });
+
+  /* Testimonial toggle */
+  document.querySelectorAll('.testi-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.testi-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
+  });
+
+  /* Scroll reveal */
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  document.querySelectorAll('.svc-card[data-scroll-to]').forEach(card => {
+    card.addEventListener('click', () => scrollTo(card.dataset.scrollTo));
+  });
+})();
+</script>
+</body>
+</html>
