@@ -1238,11 +1238,11 @@ ul { list-style: none; }
   /* ── News feed ── */
   (function() {
     /* ─── SUPABASE CONFIG — paste your values here ─── */
-    var SB_URL = 'YOUR_SUPABASE_URL';
-    var SB_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    var SB_URL = 'https://nugexvgdfljwnkjxlsgg.supabase.co';
+    var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51Z2V4dmdkZmxqd25ranhsc2dnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NDMxNzMsImV4cCI6MjA5NTIxOTE3M30.L8AJiCyM-to-T4xiUChuGKhP44FRy_LWHisoq_mrFNw';
     /* ─────────────────────────────────────────────── */
     var grid = document.getElementById('news-grid');
-    if (!grid || SB_URL === 'YOUR_SUPABASE_URL') return;
+    if (!grid || SB_URL === 'https://nugexvgdfljwnkjxlsgg.supabase.co') return;
     var sb = supabase.createClient(SB_URL, SB_KEY);
     sb.from('posts').select('title,slug,excerpt,image_url,category,published_at,created_at')
       .eq('published', true).order('published_at', { ascending: false }).limit(3)
