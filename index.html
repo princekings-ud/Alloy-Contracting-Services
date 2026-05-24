@@ -639,7 +639,33 @@ ul { list-style: none; }
   .footer-grid { gap: 56px; }
   .s-head h2, .proj-head h2, .why-head h2 { font-size: clamp(38px,4vw,54px); }
 }
+/* ════════════════════════ NEWS / ANNOUNCEMENTS ════════════════════════ */
+.news { padding: 64px 0; background: var(--black); border-top: 1px solid var(--line); }
+.news-head-row { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.news-head-row h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(28px,7vw,52px); line-height: 1.04; letter-spacing: -0.012em; color: var(--txt-1); margin-top: 12px; }
+.news-view-all { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); font-weight: 600; text-decoration: none; transition: gap 0.25s var(--ease-out); align-self: flex-start; }
+.news-view-all:hover { gap: 14px; }
+.news-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.news-card { background: var(--surf-1); border: 1px solid var(--line); display: block; text-decoration: none; overflow: hidden; transition: border-color 0.3s, transform 0.35s var(--ease-out), box-shadow 0.35s; }
+.news-card:hover { border-color: var(--red); transform: translateY(-4px); box-shadow: 0 20px 48px -24px rgba(232,35,26,0.24); }
+.news-img { aspect-ratio: 16/9; overflow: hidden; }
+.news-img-inner { width: 100%; height: 100%; background: var(--surf-2) center/cover no-repeat; transition: transform 0.85s var(--ease-out); }
+.news-card:hover .news-img-inner { transform: scale(1.06); }
+.news-body { padding: 20px 22px 22px; border-left: 3px solid transparent; transition: border-color 0.3s; }
+.news-card:hover .news-body { border-color: var(--red); }
+.news-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.news-cat { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600; background: var(--red); color: var(--white); padding: 3px 8px; }
+.news-date { font-size: 11px; color: var(--txt-3); }
+.news-title { font-family: var(--serif); font-size: clamp(17px,2.5vw,22px); font-weight: 600; color: var(--txt-1); line-height: 1.22; margin-bottom: 8px; }
+.news-excerpt { font-size: 13px; color: var(--txt-2); line-height: 1.65; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.news-read { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+.news-empty { color: var(--txt-3); font-size: 14px; text-align: center; padding: 40px 0; grid-column: 1/-1; }
+@media (min-width: 640px) { .news-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 780px) { .news-head-row { flex-direction: row; justify-content: space-between; align-items: flex-end; } .news-view-all { align-self: auto; } }
+@media (min-width: 900px) { .news { padding: 96px 0; } }
+@media (min-width: 1080px) { .news { padding: 112px 0; } .news-grid { grid-template-columns: repeat(3,1fr); } }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
 
@@ -656,6 +682,7 @@ ul { list-style: none; }
     <a href="#about" data-nav-link="about">About</a>
     <a href="#services" data-nav-link="services">Services</a>
     <a href="#projects" data-nav-link="projects">Projects</a>
+    <a href="#news" data-nav-link="news">News</a>
     <a href="#testimonials" data-nav-link="testimonials">Testimonials</a>
     <a href="#team" data-nav-link="team">Team</a>
     <a href="#contact" data-nav-link="contact">Contact</a>
@@ -674,6 +701,7 @@ ul { list-style: none; }
   <a href="#about" class="mobile-link">About</a>
   <a href="#services" class="mobile-link">Services</a>
   <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#news" class="mobile-link">News</a>
   <a href="#testimonials" class="mobile-link">Testimonials</a>
   <a href="#team" class="mobile-link">Team</a>
   <a href="#contact" class="mobile-link">Contact</a>
@@ -736,6 +764,23 @@ ul { list-style: none; }
       <div class="trust-cell">FMOH<span class="sub">Health</span></div>
       <div class="trust-cell">UNILAG<span class="sub">Education</span></div>
     </div>
+  </div>
+</section>
+
+<!-- ══ NEWS & ANNOUNCEMENTS ══ -->
+<section class="news" id="news">
+  <div class="container">
+    <div class="news-head-row reveal">
+      <div>
+        <span class="descriptor">News &amp; Announcements</span>
+        <h2>Latest updates<br>from Alloy.</h2>
+      </div>
+      <a href="blog.html" class="news-view-all">
+        All Announcements
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="news-grid" id="news-grid"></div>
   </div>
 </section>
 
@@ -1108,7 +1153,7 @@ ul { list-style: none; }
 (function () {
   'use strict';
   const nav = document.getElementById('nav');
-  const sections = ['top','about','services','projects','testimonials','team','contact'];
+  const sections = ['top','about','services','projects','news','testimonials','team','contact'];
   const navLinks = document.querySelectorAll('[data-nav-link]');
 
   function setActive(id) {
@@ -1189,6 +1234,36 @@ ul { list-style: none; }
   document.querySelectorAll('.svc-card[data-scroll-to]').forEach(card => {
     card.addEventListener('click', () => scrollTo(card.dataset.scrollTo));
   });
+
+  /* ── News feed ── */
+  (function() {
+    /* ─── SUPABASE CONFIG — paste your values here ─── */
+    var SB_URL = 'YOUR_SUPABASE_URL';
+    var SB_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    /* ─────────────────────────────────────────────── */
+    var grid = document.getElementById('news-grid');
+    if (!grid || SB_URL === 'YOUR_SUPABASE_URL') return;
+    var sb = supabase.createClient(SB_URL, SB_KEY);
+    sb.from('posts').select('title,slug,excerpt,image_url,category,published_at,created_at')
+      .eq('published', true).order('published_at', { ascending: false }).limit(3)
+      .then(function(res) {
+        var posts = res.data;
+        if (!posts || !posts.length) return;
+        grid.innerHTML = posts.map(function(p, i) {
+          var d = new Date(p.published_at || p.created_at).toLocaleDateString('en-NG', { day:'numeric', month:'long', year:'numeric' });
+          var img = p.image_url ? "background-image:url('" + esc(p.image_url) + "')" : '';
+          return '<a class="news-card reveal reveal-delay-' + (i+1) + '" href="post.html?id=' + esc(p.slug) + '">' +
+            '<div class="news-img"><div class="news-img-inner"' + (img ? ' style="' + img + '"' : '') + '></div></div>' +
+            '<div class="news-body">' +
+              '<div class="news-meta"><span class="news-cat">' + esc(p.category||'News') + '</span><span class="news-date">' + d + '</span></div>' +
+              '<h3 class="news-title">' + esc(p.title) + '</h3>' +
+              (p.excerpt ? '<p class="news-excerpt">' + esc(p.excerpt) + '</p>' : '') +
+              '<span class="news-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>' +
+            '</div></a>';
+        }).join('');
+      });
+    function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  })();
 
   /* Theme toggle */
   (function() {

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>News &amp; Announcements — Alloy Contracting Services</title>
+<meta name="description" content="Latest news, updates and announcements from Alloy Contracting Services." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+:root {
+  --black:#080808;--black-2:#0D0D0D;--surf-1:#111111;--surf-2:#181818;
+  --red:#E8231A;--red-pale:#FF5A52;--white:#FFFFFF;
+  --line:rgba(255,255,255,0.07);--line-m:rgba(255,255,255,0.13);
+  --txt-1:rgba(255,255,255,0.90);--txt-2:rgba(255,255,255,0.52);--txt-3:rgba(255,255,255,0.28);
+  --serif:'Cormorant Garamond','Times New Roman',serif;--sans:'Inter',system-ui,sans-serif;
+  --red-grad:linear-gradient(135deg,#C8180F 0%,#E8231A 50%,#C8180F 100%);
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+}
+[data-theme="light"] {
+  --black:#F7F7F3;--black-2:#EEEEE9;--surf-1:#FFFFFF;--surf-2:#E6E6E2;
+  --line:rgba(0,0,0,0.09);--line-m:rgba(0,0,0,0.16);
+  --txt-1:rgba(0,0,0,0.88);--txt-2:rgba(0,0,0,0.54);--txt-3:rgba(0,0,0,0.30);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--black);color:var(--txt-1);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{background:none;border:none;cursor:pointer;font-family:inherit}
+img{display:block;max-width:100%}
+.container{max-width:1240px;margin:0 auto;padding:0 16px}
+.descriptor{display:block;font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:8px}
+
+/* ── Nav ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(8,8,8,0.97);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:padding 0.3s}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo-img{width:32px;height:32px;object-fit:contain}
+.nav-wordmark .a{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:0.18em;color:var(--white);display:block}
+.nav-wordmark .c{font-size:7.5px;letter-spacing:0.34em;color:var(--red);text-transform:uppercase;display:block}
+.nav-links{display:none;gap:28px;align-items:center}
+.nav-links a{font-size:12px;letter-spacing:0.05em;color:var(--txt-2);transition:color 0.2s;position:relative;padding-bottom:2px}
+.nav-links a::after{content:"";position:absolute;bottom:-2px;left:0;right:0;height:1.5px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.25s var(--ease-out)}
+.nav-links a:hover{color:var(--red-pale)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a.active{color:var(--red-pale)}
+.nav-cta-desktop{display:none;align-items:center;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;padding:10px 18px;background:var(--red-grad);color:var(--white);margin-left:4px;transition:transform 0.2s,box-shadow 0.2s}
+.nav-cta-desktop:hover{transform:translateY(-1px);box-shadow:0 10px 24px -12px rgba(232,35,26,0.65)}
+.nav-burger{display:flex;flex-direction:column;gap:5px;width:32px;padding:4px 0;cursor:pointer}
+.nav-burger span{display:block;width:100%;height:1.5px;background:var(--white);transition:transform 0.3s,opacity 0.3s}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.theme-toggle{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.68);transition:background 0.25s,color 0.25s,transform 0.35s var(--ease-out)}
+.theme-toggle:hover{background:rgba(255,255,255,0.18);color:#FFF;transform:rotate(22deg)}
+.theme-toggle .icon-moon{display:none}
+[data-theme="light"] .theme-toggle{background:rgba(0,0,0,0.07);border-color:rgba(0,0,0,0.15);color:rgba(0,0,0,0.58)}
+[data-theme="light"] .theme-toggle .icon-sun{display:none}
+[data-theme="light"] .theme-toggle .icon-moon{display:flex}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:rgba(8,8,8,0.99);flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;transition:opacity 0.35s ease}
+.mobile-menu.open{display:flex;opacity:1}
+.mobile-menu a,.mobile-menu button{font-family:var(--serif);font-size:34px;letter-spacing:0.06em;color:var(--txt-1);transition:color 0.2s}
+.mobile-menu a:hover,.mobile-menu button:hover{color:var(--red)}
+.mobile-menu .mobile-cta{font-family:var(--sans);font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;padding:16px 36px;background:var(--red-grad);color:var(--white);margin-top:12px}
+[data-theme="light"] .mobile-menu{background:rgba(247,247,243,0.99)}
+[data-theme="light"] .mobile-menu a{color:rgba(0,0,0,0.82)}
+
+/* ── Page hero ── */
+.page-hero{padding:120px 0 52px;background:var(--black-2);border-bottom:1px solid var(--line)}
+.page-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(32px,6vw,58px);line-height:1.06;letter-spacing:-0.012em;color:var(--txt-1);margin-top:12px;margin-bottom:12px}
+.page-hero-sub{font-size:14px;color:var(--txt-2);max-width:480px}
+
+/* ── Blog grid ── */
+.blog{padding:64px 0 80px;background:var(--black)}
+.blog-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.blog-card{background:var(--surf-1);border:1px solid var(--line);display:block;text-decoration:none;overflow:hidden;transition:border-color 0.3s,transform 0.35s var(--ease-out),box-shadow 0.35s}
+.blog-card:hover{border-color:var(--red);transform:translateY(-4px);box-shadow:0 20px 48px -24px rgba(232,35,26,0.24)}
+.blog-img{aspect-ratio:16/9;overflow:hidden}
+.blog-img-inner{width:100%;height:100%;background:var(--surf-2) center/cover no-repeat;transition:transform 0.85s var(--ease-out)}
+.blog-card:hover .blog-img-inner{transform:scale(1.06)}
+.blog-body{padding:20px 22px 22px;border-left:3px solid transparent;transition:border-color 0.3s}
+.blog-card:hover .blog-body{border-color:var(--red)}
+.blog-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.blog-cat{font-size:9px;letter-spacing:0.26em;text-transform:uppercase;font-weight:600;background:var(--red);color:var(--white);padding:3px 8px}
+.blog-date{font-size:11px;color:var(--txt-3)}
+.blog-title{font-family:var(--serif);font-size:clamp(17px,2.5vw,24px);font-weight:600;color:var(--txt-1);line-height:1.22;margin-bottom:8px}
+.blog-excerpt{font-size:13px;color:var(--txt-2);line-height:1.65;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.blog-read{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.blog-empty{color:var(--txt-3);font-size:14px;text-align:center;padding:80px 0;grid-column:1/-1}
+.load-more-wrap{text-align:center;margin-top:40px}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;padding:13px 26px;color:var(--txt-1);border:1px solid var(--line-m);background:transparent;cursor:pointer;transition:border-color 0.25s,color 0.25s}
+.btn-outline:hover{border-color:var(--red);color:var(--red)}
+
+/* ── CTA ── */
+.cta-section{padding:64px 0;background:var(--red);text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(120deg,rgba(255,255,255,0.04) 0 1.5px,transparent 1.5px 28px);pointer-events:none}
+.cta-inner{max-width:520px;margin:0 auto;position:relative;z-index:1}
+.cta-inner h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,6vw,44px);line-height:1.06;color:var(--white);margin:8px 0 14px}
+.cta-inner p{font-size:14px;line-height:1.68;color:rgba(255,255,255,0.78);margin-bottom:24px}
+.btn-white{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;padding:13px 26px;background:var(--white);color:var(--red);border:none;cursor:pointer;transition:opacity 0.2s}
+.btn-white:hover{opacity:0.9}
+
+/* ── Footer ── */
+.footer{background:var(--black);padding:56px 0 28px;border-top:1px solid var(--line)}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:32px}
+.footer-brand-logo{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.footer-logo-img{width:36px;height:36px;object-fit:contain}
+.footer-wm-a{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:0.18em;color:var(--white)}
+.footer-wm-c{font-size:8px;letter-spacing:0.34em;color:var(--red);margin-top:3px;text-transform:uppercase;display:block}
+.footer-brand p{font-size:13px;color:var(--txt-3);line-height:1.7;margin-bottom:18px;max-width:280px}
+.footer-socials{display:flex;gap:8px}
+.footer-social{width:34px;height:34px;border:1px solid var(--line-m);color:var(--txt-3);display:flex;align-items:center;justify-content:center;transition:border-color 0.25s,color 0.25s}
+.footer-social:hover{border-color:var(--red);color:var(--red-pale)}
+.footer-col h5{font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--red);margin-bottom:16px;font-weight:500}
+.footer-col a,.footer-col address{display:block;font-size:13px;color:var(--txt-3);padding:4px 0;transition:color 0.2s;line-height:1.6;font-style:normal}
+.footer-col a:hover{color:var(--txt-1)}
+.footer-col .contact-item{display:flex;align-items:flex-start;gap:8px}
+.footer-col .contact-item svg{flex-shrink:0;margin-top:3px;color:var(--red)}
+.footer-bottom{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--txt-3);letter-spacing:0.08em;text-align:center}
+[data-theme="light"] .footer-wm-a{color:rgba(0,0,0,0.88)}
+
+/* ── Responsive ── */
+@media (min-width:640px){.container{padding:0 20px}.blog-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:780px){.nav{padding:18px 32px}.nav-links{display:flex}.nav-cta-desktop{display:inline-flex}.nav-burger{display:none}}
+@media (min-width:900px){.nav{padding:22px 40px}.container{padding:0 32px}.blog{padding:96px 0 100px}}
+@media (min-width:1080px){.blog-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px}.footer-bottom{flex-direction:row;justify-content:space-between}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="WhatsApp Image 2026-05-18 at 9.03.54 AM-Photoroom.png" class="nav-logo-img" alt="Alloy logo">
+    <div class="nav-wordmark"><span class="a">ALLOY</span><span class="c">Contracting Services</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="blog.html" class="active">News</a>
+    <a href="index.html#testimonials">Testimonials</a>
+    <a href="index.html#contact">Contact</a>
+    <button class="nav-cta-desktop" onclick="location.href='index.html#contact'">Get a Quote</button>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+    <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+  </button>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html#about">About</a>
+  <a href="index.html#services">Services</a>
+  <a href="index.html#projects">Projects</a>
+  <a href="blog.html">News</a>
+  <a href="index.html#contact">Contact</a>
+  <button class="mobile-cta" onclick="location.href='index.html#contact'">Get a Quote</button>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="descriptor">Alloy Contracting Services</span>
+    <h1>News &amp;<br>Announcements</h1>
+    <p class="page-hero-sub">Updates on contracts, milestones, industry recognition, and everything happening at Alloy.</p>
+  </div>
+</section>
+
+<section class="blog">
+  <div class="container">
+    <div class="blog-grid" id="blog-grid">
+      <p class="blog-empty" style="color:var(--txt-3);opacity:0.5">Loading…</p>
+    </div>
+    <div class="load-more-wrap" id="load-more-wrap" style="display:none">
+      <button class="btn-outline" id="load-more-btn">
+        Load More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="descriptor" style="color:rgba(255,255,255,0.6)">Start a Project</span>
+      <h2>Planning a construction project?</h2>
+      <p>A senior Alloy partner responds within one business day.</p>
+      <a class="btn-white" href="index.html#contact">Get a Free Quote</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <img src="WhatsApp Image 2026-05-18 at 9.03.54 AM-Photoroom.png" class="footer-logo-img" alt="Alloy logo">
+          <div><div class="footer-wm-a">ALLOY</div><span class="footer-wm-c">Contracting Services</span></div>
+        </div>
+        <p>Nigeria's trusted construction, contracting, and supply partner — built for institutions, built to last. Established Lagos, 2012.</p>
+        <div class="footer-socials">
+          <a class="footer-social" href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 3a2 2 0 110 4 2 2 0 010-4z"/></svg></a>
+          <a class="footer-social" href="#" aria-label="Twitter/X"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="index.html#about">About Alloy</a>
+        <a href="index.html#projects">Our Projects</a>
+        <a href="blog.html">News</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-8 8-13a8 8 0 10-16 0c0 5 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+          <address>14 Akin Adeshola Street<br>Victoria Island, Lagos</address>
+        </div>
+        <div class="contact-item" style="margin-top:8px">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h18v14H3zM3 5l9 8 9-8"/></svg>
+          <a href="mailto:partnerships@alloycs.ng">partnerships@alloycs.ng</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Alloy Contracting Services Ltd. RC 1,204,887</div>
+      <div>Built for Institutions. Built to Last.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─── SUPABASE CONFIG ─── */
+var SB_URL = 'YOUR_SUPABASE_URL';
+var SB_KEY = 'YOUR_SUPABASE_ANON_KEY';
+/* ───────────────────────── */
+
+var PAGE = 6, offset = 0, loading = false, sb;
+
+if (SB_URL !== 'YOUR_SUPABASE_URL') {
+  sb = supabase.createClient(SB_URL, SB_KEY);
+  load(true);
+} else {
+  document.getElementById('blog-grid').innerHTML = '<p class="blog-empty">Configure Supabase to see posts here.</p>';
+}
+
+async function load(reset) {
+  if (loading) return;
+  loading = true;
+  if (reset) offset = 0;
+  var grid = document.getElementById('blog-grid');
+  if (reset) grid.innerHTML = '';
+  try {
+    var res = await sb.from('posts')
+      .select('title,slug,excerpt,image_url,category,published_at,created_at')
+      .eq('published', true)
+      .order('published_at', { ascending: false })
+      .range(offset, offset + PAGE - 1);
+    var posts = res.data || [];
+    if (!posts.length && reset) { grid.innerHTML = '<p class="blog-empty">No announcements yet — check back soon.</p>'; }
+    posts.forEach(function(p) {
+      var el = document.createElement('div');
+      el.innerHTML = card(p);
+      grid.appendChild(el.firstElementChild);
+    });
+    offset += posts.length;
+    document.getElementById('load-more-wrap').style.display = posts.length === PAGE ? 'block' : 'none';
+  } catch(e) { if (reset) document.getElementById('blog-grid').innerHTML = '<p class="blog-empty">Could not load posts.</p>'; }
+  loading = false;
+}
+
+function card(p) {
+  var d = new Date(p.published_at || p.created_at).toLocaleDateString('en-NG', { day:'numeric', month:'long', year:'numeric' });
+  var img = p.image_url ? ' style="background-image:url(\'' + esc(p.image_url) + '\')"' : '';
+  return '<a class="blog-card" href="post.html?id=' + esc(p.slug) + '">' +
+    '<div class="blog-img"><div class="blog-img-inner"' + img + '></div></div>' +
+    '<div class="blog-body">' +
+      '<div class="blog-meta"><span class="blog-cat">' + esc(p.category||'News') + '</span><span class="blog-date">' + d + '</span></div>' +
+      '<h2 class="blog-title">' + esc(p.title) + '</h2>' +
+      (p.excerpt ? '<p class="blog-excerpt">' + esc(p.excerpt) + '</p>' : '') +
+      '<span class="blog-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>' +
+    '</div></a>';
+}
+
+document.getElementById('load-more-btn').addEventListener('click', function() { load(false); });
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// Nav burger
+document.getElementById('nav-burger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+document.querySelectorAll('.mobile-menu a, .mobile-menu .mobile-cta').forEach(function(el) {
+  el.addEventListener('click', function() {
+    document.getElementById('nav-burger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+  });
+});
+
+// Theme toggle
+(function() {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  if (localStorage.getItem('alloy-theme') === 'light') root.setAttribute('data-theme','light');
+  btn.addEventListener('click', function() {
+    var light = root.getAttribute('data-theme') === 'light';
+    if (light) { root.removeAttribute('data-theme'); localStorage.setItem('alloy-theme','dark'); }
+    else { root.setAttribute('data-theme','light'); localStorage.setItem('alloy-theme','light'); }
+  });
+})();
+</script>
+</body>
+</html>
