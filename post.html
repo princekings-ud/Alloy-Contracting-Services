@@ -247,8 +247,6 @@ var slug = new URLSearchParams(location.search).get('id');
 
 if (!slug) {
   showError('No post specified.', 'Go back to all announcements');
-} else if (SB_URL === 'https://nugexvgdfljwnkjxlsgg.supabase.co') {
-  showError('Supabase not yet configured.', '');
 } else {
   var sb = supabase.createClient(SB_URL, SB_KEY);
   loadPost();

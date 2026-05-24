@@ -239,12 +239,8 @@ var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 
 var PAGE = 6, offset = 0, loading = false, sb;
 
-if (SB_URL !== 'https://nugexvgdfljwnkjxlsgg.supabase.co') {
-  sb = supabase.createClient(SB_URL, SB_KEY);
-  load(true);
-} else {
-  document.getElementById('blog-grid').innerHTML = '<p class="blog-empty">Configure Supabase to see posts here.</p>';
-}
+sb = supabase.createClient(SB_URL, SB_KEY);
+load(true);
 
 async function load(reset) {
   if (loading) return;

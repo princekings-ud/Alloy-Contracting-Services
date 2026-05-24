@@ -1242,7 +1242,7 @@ ul { list-style: none; }
     var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51Z2V4dmdkZmxqd25ranhsc2dnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NDMxNzMsImV4cCI6MjA5NTIxOTE3M30.L8AJiCyM-to-T4xiUChuGKhP44FRy_LWHisoq_mrFNw';
     /* ─────────────────────────────────────────────── */
     var grid = document.getElementById('news-grid');
-    if (!grid || SB_URL === 'https://nugexvgdfljwnkjxlsgg.supabase.co') return;
+    if (!grid) return;
     var sb = supabase.createClient(SB_URL, SB_KEY);
     sb.from('posts').select('title,slug,excerpt,image_url,category,published_at,created_at')
       .eq('published', true).order('published_at', { ascending: false }).limit(3)
