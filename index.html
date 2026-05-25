@@ -1153,7 +1153,8 @@ ul { list-style: none; }
 (function () {
   'use strict';
   const nav = document.getElementById('nav');
-  const sections = ['top','about','services','projects','news','testimonials','team','contact'];
+  /* Order must match physical DOM top-to-bottom order of section IDs */
+  const sections = ['top','news','services','about','projects','testimonials','team','contact'];
   const navLinks = document.querySelectorAll('[data-nav-link]');
 
   function setActive(id) {
@@ -1247,8 +1248,14 @@ ul { list-style: none; }
     sb.from('posts').select('title,slug,excerpt,image_url,category,published_at,created_at')
       .eq('published', true).order('published_at', { ascending: false }).limit(3)
       .then(function(res) {
+        if (res.error) { console.error('Alloy news feed:', res.error); return; }
         var posts = res.data;
-        if (!posts || !posts.length) return;
+        if (!posts || !posts.length) {
+          /* Hide the section header too so there's no orphaned heading */
+          var sec = document.getElementById('news');
+          if (sec) sec.style.display = 'none';
+          return;
+        }
         grid.innerHTML = posts.map(function(p, i) {
           var d = new Date(p.published_at || p.created_at).toLocaleDateString('en-NG', { day:'numeric', month:'long', year:'numeric' });
           var img = p.image_url ? "background-image:url('" + esc(p.image_url) + "')" : '';
@@ -1261,7 +1268,11 @@ ul { list-style: none; }
               '<span class="news-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>' +
             '</div></a>';
         }).join('');
-      });
+        /* Cards are injected after the IntersectionObserver's initial scan —
+           re-observe them so the reveal animation fires correctly */
+        grid.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+      })
+      .catch(function(err) { console.error('Alloy news feed fetch failed:', err); });
     function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   })();
 
