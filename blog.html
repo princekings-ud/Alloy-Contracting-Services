@@ -34,26 +34,27 @@ img{display:block;max-width:100%}
 .descriptor{display:block;font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:8px}
 
 /* ── Nav ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(8,8,8,0.97);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:padding 0.3s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#FFFFFF;border-bottom:1px solid rgba(0,0,0,0.10);transition:padding 0.3s,box-shadow 0.3s}
+.nav.scrolled{box-shadow:0 2px 16px rgba(0,0,0,0.07)}
 .nav-brand{display:flex;align-items:center;gap:10px}
 .nav-logo-img{width:32px;height:32px;object-fit:contain}
-.nav-wordmark .a{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:0.18em;color:var(--white);display:block}
+.nav-wordmark .a{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:0.18em;color:rgba(0,0,0,0.88);display:block}
 .nav-wordmark .c{font-size:7.5px;letter-spacing:0.34em;color:var(--red);text-transform:uppercase;display:block}
 .nav-links{display:none;gap:28px;align-items:center}
-.nav-links a{font-size:12px;letter-spacing:0.05em;color:var(--txt-2);transition:color 0.2s;position:relative;padding-bottom:2px}
+.nav-links a{font-size:12px;letter-spacing:0.05em;color:rgba(0,0,0,0.55);transition:color 0.2s;position:relative;padding-bottom:2px}
 .nav-links a::after{content:"";position:absolute;bottom:-2px;left:0;right:0;height:1.5px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.25s var(--ease-out)}
-.nav-links a:hover{color:var(--red-pale)}
+.nav-links a:hover{color:var(--red)}
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-.nav-links a.active{color:var(--red-pale)}
+.nav-links a.active{color:var(--red)}
 .nav-cta-desktop{display:none;align-items:center;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;padding:10px 18px;background:var(--red-grad);color:var(--white);margin-left:4px;transition:transform 0.2s,box-shadow 0.2s}
 .nav-cta-desktop:hover{transform:translateY(-1px);box-shadow:0 10px 24px -12px rgba(232,35,26,0.65)}
 .nav-burger{display:flex;flex-direction:column;gap:5px;width:32px;padding:4px 0;cursor:pointer}
-.nav-burger span{display:block;width:100%;height:1.5px;background:var(--white);transition:transform 0.3s,opacity 0.3s}
+.nav-burger span{display:block;width:100%;height:1.5px;background:rgba(0,0,0,0.80);transition:transform 0.3s,opacity 0.3s}
 .nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .nav-burger.open span:nth-child(2){opacity:0}
 .nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-.theme-toggle{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.68);transition:background 0.25s,color 0.25s,transform 0.35s var(--ease-out)}
-.theme-toggle:hover{background:rgba(255,255,255,0.18);color:#FFF;transform:rotate(22deg)}
+.theme-toggle{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.12);color:rgba(0,0,0,0.55);transition:background 0.25s,color 0.25s,transform 0.35s var(--ease-out)}
+.theme-toggle:hover{background:rgba(0,0,0,0.10);color:rgba(0,0,0,0.88);transform:rotate(22deg)}
 .theme-toggle .icon-moon{display:none}
 [data-theme="light"] .theme-toggle{background:rgba(0,0,0,0.07);border-color:rgba(0,0,0,0.15);color:rgba(0,0,0,0.58)}
 [data-theme="light"] .theme-toggle .icon-sun{display:none}
@@ -282,6 +283,11 @@ function card(p) {
 
 document.getElementById('load-more-btn').addEventListener('click', function() { load(false); });
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// Nav scroll shadow
+window.addEventListener('scroll', function() {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
 
 // Nav burger
 document.getElementById('nav-burger').addEventListener('click', function() {
